@@ -1,4 +1,3 @@
 ## Description
 
-Repository for ecommerce solution of potichu company.
-www.potichu.sk
+Repository of custom tailored ecommerce solution. www.potichu.sk

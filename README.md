@@ -1,3 +1,3 @@
 ## Description
 
-Repository of custom tailored ecommerce solution. www.potichu.sk
+Repository of custom tailored wordpress theme. www.potichu.sk

@@ -38,7 +38,7 @@ if($headerS['header_topbar'] == true)
 			            //if(strpos( $headerS['header_social'], 'extra_header_active') !== false) echo $icons;
 						
 						if (get_option('display_feedback_button')) {						
-							echo '<a id="feedbackButton" href=" ' . get_option('feedback_form_address') . '" target="_blank" rel="nofollow">'.  get_option('feedback_field_title') . '</a>';
+							echo '<a id="feedbackButton" href=" ' . get_option('feedback_form_address') . '" target="_blank" rel="nofollow">'.  get_option('feedback_field_title', '--') . '</a>';
 						}
 						
 						//display navigation

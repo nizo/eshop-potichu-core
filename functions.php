@@ -1548,3 +1548,27 @@ add_action('init', 'disable_embeds_init', 9999);
 
 remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
+
+ 
+ 
+
+
+
+function potichuQuantityInputArgs( $args, $product ) { 
+
+	if (!$product || !$product->id) return $args;
+	
+	$productMinValue = get_post_meta($product->id , 'min_quantity', true );
+	
+	if ($productMinValue) {		
+		$args['min_value'] = $productMinValue;
+	}
+	
+   return $args; 
+}
+
+add_filter( 'woocommerce_quantity_input_args', 'potichuQuantityInputArgs', 10, 2 );
+
+
+
+

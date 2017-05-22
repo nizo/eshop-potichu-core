@@ -15,7 +15,8 @@ jQuery(document).ready(function($) {
 	jQuery(".quantity input[type=number]").each(function()
 	{
 		var number = $(this),
-			newNum = jQuery(jQuery('<div />').append(number.clone(true)).html().replace('number','text')).insertAfter(number);
+			//newNum = jQuery(jQuery('<div />').append(number.clone(true)).html().replace('number','text')).insertAfter(number);
+			newNum = jQuery(jQuery('<div />').append(number.clone(true)).html()).insertAfter(number);
 			number.remove();
 	});
 	

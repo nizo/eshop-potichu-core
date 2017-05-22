@@ -1022,7 +1022,9 @@ div.product div.images div.thumbnails a {
 
 .phone-info {
     padding: 3px 0 2px 0;
+	margin-top: 5px !important;
 }
+
 .header_color a:hover {
 	color: #444;
 }

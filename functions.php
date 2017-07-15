@@ -1121,7 +1121,7 @@ function previewEmail() {
         $exclude = array( '.', '..', 'email-header.php', 'email-footer.php','plain','email-order-items.php','email-addresses.php' );
 		
         $list = array_diff($files,$exclude);
-        ?><form method="get" action="<?php echo site_url(); ?>/wp-admin/admin-ajax.php">
+        ?><form method="get" action="<?php echo get_site_url(null, '/wp-admin/admin-ajax.php') ?>">
 			<input type="hidden" name="order" value="7282">
 			<input type="hidden" name="action" value="previewemail">
 			<select name="file">
@@ -1493,15 +1493,16 @@ function potichu_send_customer_email_after_social_register($id, $pass) {
 }
 
 function addResourceHints( $hints, $relation_type ) {
+
     if ( 'dns-prefetch' === $relation_type ) {
 		$hints[] = '//google-analytics.com';      
 		$hints[] = '//fonts.googleapis.com';
 		$hints[] = '//app.livechatoo.com';		
     } else if ( 'prefetch' === $relation_type ) {        
-		$hints[] = '/wp-includes/js/jquery/jquery.js';
-		$hints[] = '/wp-content/themes/enfold/js/shortcodes.js';
-		$hints[] = '/wp-content/themes/enfold/js/avia.js';
-		$hints[] = '/wp-includes/js/mediaelement/mediaelement-and-player.min.js';
+		$hints[] = get_site_url(null, '/wp-includes/js/jquery/jquery.js');
+		$hints[] = get_site_url(null, '/wp-content/themes/enfold/js/shortcodes.js');
+		$hints[] = get_site_url(null, '/wp-content/themes/enfold/js/avia.js');
+		$hints[] = get_site_url(null, '/wp-includes/js/mediaelement/mediaelement-and-player.min.js');
     }
  
     return $hints;

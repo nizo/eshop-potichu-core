@@ -28,10 +28,8 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(l,
 var geolocationRequest = jQuery.getJSON( "https://geoip.nekudo.com/api/", function(response) {
 
 	if (response && response.country.code != eshopCountryCode) {
-		
-		
+			
 		var shopAdvisorCookie = readCookie('advisorClosed');
-		console.log(shopAdvisorCookie);
 		
 		if (!shopAdvisorCookie ) {
 			jQuery('#redirectAdvisor').show();

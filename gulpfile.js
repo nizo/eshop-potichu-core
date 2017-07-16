@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var minifyCss = require("gulp-minify-css");
 var uglify = require("gulp-uglify");
 var rename  = require("gulp-rename");
+var concatCss = require('gulp-concat-css');
 
  
 gulp.task('minify-css', function () {
@@ -10,6 +11,13 @@ gulp.task('minify-css', function () {
     .pipe(rename({
       suffix: '.min'
     }))
+    .pipe(gulp.dest('./css'));
+});
+
+gulp.task('concatenate-css', function () {
+    gulp.src(['./css/grid.css', './css/layout.css', './css/shortcodes.css', './css/custom.css'])
+    .pipe(concatCss("bundled.css"))    
+    .pipe(minifyCss())
     .pipe(gulp.dest('./css'));
 });
 
@@ -23,4 +31,4 @@ gulp.task('minify-js', function () {
     .pipe(gulp.dest('./js'));
 });
 
-gulp.task('default', ['minify-css', 'minify-js']);
+gulp.task('default', ['minify-js', 'concatenate-css']);

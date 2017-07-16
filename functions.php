@@ -264,10 +264,17 @@ if(!function_exists('avia_register_frontend_scripts'))
 
 		
 
+		$suffix = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
+
+		
+
+
+
+
 		//register js
 		//wp_enqueue_script( 'avia-compat', $template_url.'/js/avia-compat.js', array('jquery'), 2, false ); //needs to be loaded at the top to prevent bugs
-		wp_enqueue_script( 'avia-default', $template_url.'/js/avia.js', array('jquery'), 3, true );
-		wp_enqueue_script( 'avia-shortcodes', $template_url.'/js/shortcodes.js', array('jquery'), 3, true );
+		wp_enqueue_script( 'avia-default', $template_url.'/js/avia' . $suffix . '.js', array('jquery'), 3, true );
+		wp_enqueue_script( 'avia-shortcodes', $template_url.'/js/shortcodes' . $suffix . '.js', array('jquery'), 3, true );
 		wp_enqueue_script( 'avia-popup',  $template_url.'/js/aviapopup/jquery.magnific-popup.min.js', array('jquery'), 2, true);
 		
 		
@@ -281,19 +288,19 @@ if(!function_exists('avia_register_frontend_scripts'))
 		if ( is_singular() && get_option( 'thread_comments' ) ) { wp_enqueue_script( 'comment-reply' ); }
 
 		//register styles
-		wp_register_style( 'avia-style' ,  $child_theme_url."/style.css", array(), 		'2', 'all' ); //register default style.css file. only include in childthemes. has no purpose in main theme
-		wp_register_style( 'avia-custom',  $template_url."/css/custom.css", array(), 	'5', 'all' );
+		//wp_register_style( 'avia-style' ,  $child_theme_url."/style' . $suffix . '.css", array(), 		'2', 'all' ); //register default style.css file. only include in childthemes. has no purpose in main theme
+		wp_register_style( 'avia-custom',  $template_url."/css/custom" . $suffix . ".css", array(), 	'5', 'all' );
 		
 		 
-		wp_enqueue_style( 'avia-grid' ,   $template_url."/css/grid.css", array(), 		'2', 'all' );
+		wp_enqueue_style( 'avia-grid' ,   $template_url."/css/grid" . $suffix . ".css", array(), 		'2', 'all' );
 		//wp_enqueue_style( 'avia-base' ,   $template_url."/css/base.css", array(), 		'2', 'all' );
-		wp_enqueue_style( 'avia-layout',  $template_url."/css/layout.css", array(), 	'3', 'all' );
-		wp_enqueue_style( 'avia-scs',     $template_url."/css/shortcodes.css", array(), '2', 'all' );
+		wp_enqueue_style( 'avia-layout',  $template_url."/css/layout". $suffix . ".css", array(), 	'3', 'all' );
+		wp_enqueue_style( 'avia-scs',     $template_url."/css/shortcodes" . $suffix . ".css", array(), '2', 'all' );
 		
 		// popup and media changed from screen to print
 		wp_enqueue_style( 'avia-popup-css', $template_url."/js/aviapopup/magnific-popup.css", array(), '1', 'print' );
 		wp_enqueue_style( 'avia-media'  , $template_url."/js/mediaelement/skin-1/mediaelementplayer.css", array(), '1', 'print' );
-		wp_enqueue_style( 'avia-print' ,  $template_url."/css/print.css", array(), '1', 'print' );
+		//wp_enqueue_style( 'avia-print' ,  $template_url."/css/print' . $suffix . '.css", array(), '1', 'print' );
 		
 		
 		

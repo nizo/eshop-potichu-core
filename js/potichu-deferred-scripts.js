@@ -13,6 +13,7 @@ if ('serviceWorker' in navigator) {
 		iframe.style.display = "none";
 		iframe.src = "load-appcache.html";
 		document.body.appendChild(iframe);
+	}
 		
 	console.log('response');
 }

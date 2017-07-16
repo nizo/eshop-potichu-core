@@ -283,13 +283,13 @@ if(!function_exists('avia_register_frontend_scripts'))
 		//wp_enqueue_style( 'avia-popup-css', $template_url."/js/aviapopup/magnific-popup.css", array(), '1', 'print' );
 		//wp_enqueue_style( 'avia-media'  , $template_url."/js/mediaelement/skin-1/mediaelementplayer.css", array(), '1', 'print' );		
 						
-		
+		/*
 		if (is_page( 'checkout' )) {	  
 			wp_enqueue_script( 'select2', $template_url.'/js/select2.full.min.js');
 			wp_register_style( 'select2',  $template_url."/css/select2.min.css", array(), 	'2', 'all' );
-			wp_enqueue_style( 'select2' );
-		
+			wp_enqueue_style( 'select2' );		
 		}
+		*/
 
         global $avia;
 		$safe_name = avia_backend_safe_string($avia->base_data['prefix']);
@@ -1042,14 +1042,13 @@ function potichu_display_additional_order_information($order){
 	$regionID = get_post_meta( $order->id, '_billing_region', true );
 	$regionName = potichu_get_region_name($regionID);
 		
+	echo '<strong>'.__('Región dodania').':</strong> ' . $regionName . '</br></br>';
 
 	if (get_post_meta( $order->id, '_billing_firm_data_region', true ) == 1) {
 		$companyName = get_post_meta( $order->id, '_billing_company_name', true );
 		$companyIco = get_post_meta( $order->id, '_billing_ico', true );
 		$companyDic = get_post_meta( $order->id, '_billing_dic', true );
-		$companyIcDph = get_post_meta( $order->id, '_billing_ic_dph', true );
-			
-		echo '<strong>'.__('Región dodania').':</strong> ' . $regionName . '</br></br>';
+		$companyIcDph = get_post_meta( $order->id, '_billing_ic_dph', true );					
 			
 		if ($companyName != '')
 			echo '<strong>Názov spoločnosti:</strong> ' . $companyName . '</br>';

@@ -197,47 +197,21 @@
 
 
 		
-		if (jQuery("select").select2) {
-			jQuery("select").select2({
+		/*
+		if (jQuery(".select").select2) {
+			console.log('yep deploying');
+			jQuery(".select").select2({
 				minimumResultsForSearch: 10,
 				placeholder: "Okres je dôležitý pre správny výpočet ceny dopravy",
 			});		
 		}
+		*/
 		
 		<?php
 		$countryCode = get_option('web_locale', 'sk') == 'sk' ? 'SK' : 'CZ';
 		echo 'var eshopCountryCode = \'' . $countryCode . '\';' ;
 		?>
 		
-		/*	
-		jQuery( document ).ready(function() {		
-			reflectResizedWindow();	  	  
-			deferredLoad = function() {
-				
-				<!-- LIVECHATOO -->		
-						
-				livechatooCmd = function() { livechatoo.embed.init({account : 'potichu', lang : '<?php echo get_option('web_locale', 'sk'); ?>', side : 'right'}) };
-				var l = document.createElement('script'); l.type = 'text/javascript'; l.async = !0;
-				l.src = 'http' + (document.location.protocol == 'https:' ? 's' : '') + '://app.livechatoo.com/js/web.min.js'; 
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(l, s);
-				
-				var geolocationRequest = jQuery.getJSON( "https://geoip.nekudo.com/api/", function(response) {
-			
-					if (response && response.country.code != eshopCountryCode) {
-						
-						var shopAdvisorCookie = readCookie('advisorClosed');			
-						//var referrer = document.referrer;		
-						
-						if (!shopAdvisorCookie ) {
-							jQuery('#redirectAdvisor').show();
-						}
-					}		
-				});
-				
-			};				
-			setTimeout( deferredLoad, 0 );	  
-		});
-		*/
 		function _closeAdvisor() {		
 			// log event to analytics..			
 			//_gaq.push(['_trackEvent', 'userCommunication', 'redirectRefused', 'user closed redirect advisor']);		
@@ -289,8 +263,6 @@
 			
 			if (windowWidth <= 900){	
 			   jQuery("aside").prependTo("main");
-			   //parent.insertBefore(sidebar, parent.firstChild);
-
 			}
 			else {
 				jQuery("aside").insertAfter("main");
@@ -307,24 +279,7 @@
 		jQuery( document ).ready(function() {
 			reflectResizedWindow();
 		});
-		
-		/*
-		if ('serviceWorker' in navigator) {
-			navigator.serviceWorker.register('../sw.min.js').then(function(registration) {
-				// Registration was successful
-				console.log('ServiceWorker registration successful with scope: ', registration.scope);
-			}).catch(function(err) {
-				// registration failed :(
-				console.log('ServiceWorker registration failed: ', err);
-			});
-		} else if ("applicationCache" in window) {
-			console.log("App cache version fallback");
-			let iframe = document.createElement("iframe");
-			iframe.style.display = "none";
-			iframe.src = "load-appcache.html";
-			document.body.appendChild(iframe);
-		}*/
-		
+	
 	</script>
 </body>
 </html>

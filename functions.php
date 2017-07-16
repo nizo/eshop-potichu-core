@@ -262,6 +262,8 @@ if(!function_exists('avia_register_frontend_scripts'))
 		$template_url = get_template_directory_uri();
 		$child_theme_url = get_stylesheet_directory_uri();
 
+		
+
 		//register js
 		//wp_enqueue_script( 'avia-compat', $template_url.'/js/avia-compat.js', array('jquery'), 2, false ); //needs to be loaded at the top to prevent bugs
 		wp_enqueue_script( 'avia-default', $template_url.'/js/avia.js', array('jquery'), 3, true );
@@ -1057,21 +1059,24 @@ function potichu_display_additional_order_information($order){
 	$regionID = get_post_meta( $order->id, '_billing_region', true );
 	$regionName = potichu_get_region_name($regionID);
 		
-	$companyName = get_post_meta( $order->id, '_billing_company_name', true );
-	$companyIco = get_post_meta( $order->id, '_billing_ico', true );
-	$companyDic = get_post_meta( $order->id, '_billing_dic', true );
-	$companyIcDph = get_post_meta( $order->id, '_billing_ic_dph', true );
-		
-	echo '<strong>'.__('Región dodania').':</strong> ' . $regionName . '</br></br>';
-		
-	if ($companyName != '')
-		echo '<strong>Názov spoločnosti:</strong> ' . $companyName . '</br>';
-	if ($companyIco != '')
-		echo '<strong>'.__('IČO').':</strong> ' . $companyIco . '</br>';
-	if ($companyDic != '')
-		echo '<strong>'.__('DIČ').':</strong> ' . $companyDic . '</br>';
-	if ($companyIcDph != '')
-		echo '<strong>'.__('ič DPH').':</strong> ' . $companyIcDph . '</br></br>';
+
+	if (get_post_meta( $order->id, '_billing_firm_data_region', true ) == 1) {
+		$companyName = get_post_meta( $order->id, '_billing_company_name', true );
+		$companyIco = get_post_meta( $order->id, '_billing_ico', true );
+		$companyDic = get_post_meta( $order->id, '_billing_dic', true );
+		$companyIcDph = get_post_meta( $order->id, '_billing_ic_dph', true );
+			
+		echo '<strong>'.__('Región dodania').':</strong> ' . $regionName . '</br></br>';
+			
+		if ($companyName != '')
+			echo '<strong>Názov spoločnosti:</strong> ' . $companyName . '</br>';
+		if ($companyIco != '')
+			echo '<strong>'.__('IČO').':</strong> ' . $companyIco . '</br>';
+		if ($companyDic != '')
+			echo '<strong>'.__('DIČ').':</strong> ' . $companyDic . '</br>';
+		if ($companyIcDph != '')
+			echo '<strong>'.__('ič DPH').':</strong> ' . $companyIcDph . '</br></br>';
+	}
 	
 	echo '<strong>'.__('Váha objednávky').':</strong> ' . potichu_get_order_total_weight($order) . '<br/>';
 	echo '<strong>'.__('Rozmer objednávky').':</strong> ' . potichu_get_order_dimensions($order) . ' m<sup>3</sup>';

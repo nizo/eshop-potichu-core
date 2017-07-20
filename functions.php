@@ -1485,11 +1485,15 @@ function addResourceHints( $hints, $relation_type ) {
 		$hints[] = '//google-analytics.com';      
 		$hints[] = '//fonts.googleapis.com';
 		$hints[] = '//app.livechatoo.com';		
-    } else if ( 'prefetch' === $relation_type ) {        
+    } else if ( 'prefetch' === $relation_type ) {
+		
+		$hints[] = get_site_url(null, '/wp-content/themes/enfold/config-woocommerce/woocommerce-mod.min.css');
+		/*
 		$hints[] = get_site_url(null, '/wp-includes/js/jquery/jquery.js');
 		$hints[] = get_site_url(null, '/wp-content/themes/enfold/js/shortcodes.js');
 		$hints[] = get_site_url(null, '/wp-content/themes/enfold/js/avia.js');
 		$hints[] = get_site_url(null, '/wp-includes/js/mediaelement/mediaelement-and-player.min.js');
+		*/
     }
  
     return $hints;

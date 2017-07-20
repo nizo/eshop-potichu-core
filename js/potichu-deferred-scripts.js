@@ -8,12 +8,13 @@ if ('serviceWorker' in navigator) {
 		console.log('ServiceWorker registration failed: ', err);
 	});
 } else if ("applicationCache" in window) {
+	/*
 	console.log("App cache version fallback");
 	let iframe = document.createElement("iframe");
 	iframe.style.display = "none";
 	iframe.src = "load-appcache.html";
 	document.body.appendChild(iframe);			
-	console.log('response');
+	console.log('response');*/
 }
 
 // LIVECHATOO

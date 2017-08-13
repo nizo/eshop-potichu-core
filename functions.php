@@ -279,9 +279,10 @@ if(!function_exists('avia_register_frontend_scripts'))
 		} else {
 			wp_enqueue_style( 'bundled',     $template_url."/css/bundled.css");
 		}
-				
-		//wp_enqueue_style( 'avia-popup-css', $template_url."/js/aviapopup/magnific-popup.css", array(), '1', 'print' );
-		//wp_enqueue_style( 'avia-media'  , $template_url."/js/mediaelement/skin-1/mediaelementplayer.css", array(), '1', 'print' );		
+
+		// gulp cannot process this css file, load it directly...		
+		wp_enqueue_style( 'avia-popup-css', $template_url."/js/aviapopup/magnific-popup.css", array(), '1');
+		//wp_enqueue_style( 'avia-media'  , $template_url."/js/mediaelement/skin-1/mediaelementplayer.css", array(), '1', 'print' );
 						
 		/*
 		if (is_page( 'checkout' )) {	  

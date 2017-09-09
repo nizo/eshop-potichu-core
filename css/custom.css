@@ -1095,3 +1095,23 @@ body.home .breadcrumb,
 #feedbackButton:hover { text-decoration: none; }
 
 #billing_ic_dph_field label { clear: both !important; }
+
+/* bulk discounts plugin */
+.cart-show-discounts {
+    margin: 5px 0;
+}
+
+.productinfo-show-discounts {
+    margin: 5px 0;
+}
+
+.productinfo-show-discounts.single {
+    background-color: #FFF3E0;
+    padding: 5px 11px;
+    display: inline-block;
+    border-radius: 2px;
+    color: #EF6C00;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+/* bulk discounts plugin END */

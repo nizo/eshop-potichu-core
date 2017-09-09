@@ -1031,13 +1031,6 @@ function is_user_mercantile_customer($user_id = null){
 		
     return in_array( 'customer-merchant', (array) $user->roles );
 }
-
-/* DISPLAY IN BACKEND */
-
-/**
- * Display field value on the order edit page
- */
-
  
 function potichu_display_additional_order_information($order){
 	$regionID = get_post_meta( $order->id, '_billing_region', true );
@@ -1185,11 +1178,8 @@ add_action( 'login_init', 'restrict_wp_login', 100000); // login plugins should 
 function price_add_trailing_zeros( $price ) {
 	$num_decimals = absint( get_option( 'woocommerce_price_num_decimals' ) );
 	
-	return number_format($price, $num_decimals, ',', ' ');
-	//return number_format($price, $num_decimals, ',','');
+	return number_format($price, $num_decimals, ',', ' ');	
 }
-
-//add_filter( 'woocommerce_get_price_including_tax', 'price_add_trailing_zeros', 10, 1 );
 //add_filter( 'woocommerce_get_price_excluding_tax', 'price_add_trailing_zeros', 10, 1 );
 
 

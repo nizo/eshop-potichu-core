@@ -140,24 +140,27 @@ function avia_woocommerce_thumbnail($asdf)
 	$rating = $product->get_rating_html(); //get rating
 
 	$id = get_the_ID();
-	$size = 'shop_catalog';
+	//$size = 'shop_catalog';
+	$size = 'large';
 
 	echo "<div class='thumbnail_container'>";
 		//echo avia_woocommerce_gallery_first_thumbnail( $id , $size);
-		$thumbnail = get_the_post_thumbnail( $id , $size );
-				
-		$attachment_id = get_post_thumbnail_id($id);
-		$attachment_url = wp_get_attachment_url($attachment_id);
-		$attachment_url = substr($attachment_url, 0, -5);
+		//$thumbnail = get_the_post_thumbnail( $id , $size );			
 		
-		$attachment_url_retina = $attachment_url . 'large.jpg';
-		$attachment_url_normal = $attachment_url . 'shop_catalog.jpg';
+		//$attachment_url = wp_get_attachment_url($attachment_id);
+		
+		$attachment_id = get_post_thumbnail_id($id);
+		$attachmentSrcData = wp_get_attachment_image_src($attachment_id, $size);
+				
+		//echo '<img src="' . $attachment_url . '" width="300" height="200" class="attachment-shop_catalog wp-post-image">';			
+		
+		if ($attachmentSrcData != '')			
+			//echo '<img src="' . $attachment_url_normal . '" srcset="' . $attachment_url_normal . ' 1x,' . $attachment_url_retina . ' 2x" width="300" height="200" class="attachment-shop_catalog wp-post-image">';
+			echo '<img src="' . $attachmentSrcData[0] . '" width="300" height="200" class="attachment-shop_catalog wp-post-image">';
 
-		if ($thumbnail != '')
-			//echo $thumbnail;
-			echo '<img src="' . $attachment_url_normal . '" srcset="' . $attachment_url_normal . ' 1x,' . $attachment_url_retina . ' 2x" width="300" height="200" class="attachment-shop_catalog wp-post-image">';
 		else
 			echo '<img src="' . potichu_placeholder_image() . '" class="attachment-shop_catalog wp-post-image">';
+		
 		
 		if(!empty($rating)) echo "<span class='rating_container'>".$rating."</span>";
 		if($product->product_type == 'simple') echo "<span class='cart-loading'></span>";

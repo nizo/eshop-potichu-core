@@ -1533,11 +1533,7 @@ remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
 
  
- 
-
-
-
-function potichuQuantityInputArgs( $args, $product ) { 
+function potichu_quantity_input_args( $args, $product ) { 
 
 	if (!$product || !$product->id) return $args;
 	
@@ -1549,9 +1545,17 @@ function potichuQuantityInputArgs( $args, $product ) {
 	
    return $args; 
 }
+add_filter( 'woocommerce_quantity_input_args', 'potichu_quantity_input_args', 10, 2 );
 
-add_filter( 'woocommerce_quantity_input_args', 'potichuQuantityInputArgs', 10, 2 );
 
+function remove_update_notifications( $value ) {
+    if ( isset( $value ) && is_object( $value ) ) {
+        unset( $value->response[ 'woocommerce-pay-for-payment/woocommerce-payforpayment.php' ] );
+		unset( $value->response[ 'woocommerce/woocommerce.php' ] );
+    }
 
+    return $value;
+}
+add_filter( 'site_transient_update_plugins', 'remove_update_notifications' );
 
 

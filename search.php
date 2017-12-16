@@ -21,10 +21,10 @@ global $avia_config;
                         <section class="search_form_field">
                             <?php
                             echo "<h4>".__('New Search','avia_framework')."</h4>";
-                            echo "<p>".__('If you are not happy with the results below please do another search','avia_framework')."</p>";
+                            echo "<p style='margin-top: 0 !important;'>".__('If you are not happy with the results below please do another search','avia_framework')."</p>";
 
                             get_search_form();
-                            echo "<span class='author-extra-border'></span>";
+                            //echo "<span class='author-extra-border'></span>";
                             ?>
                         </section>
                     </div>

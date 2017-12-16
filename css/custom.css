@@ -561,13 +561,9 @@ Mobile Styles
 	.phone-info {
 		display: block;
 		float: none !important;
-		margin-top: 5px;
-	}
-	
-	.phone-info span { 
-		margin: 0;
-		padding: 0;
-	}
+		padding: 4px !important;
+		font-size: 14px;
+	}		
 }
 
 #top .widget_product_search.widget { padding: 0 !important; }
@@ -647,6 +643,7 @@ div .products .inner_product_header a {
 .sidebar .widget_product_categories > ul > li.current-cat,
 .sidebar .widget_product_categories li.current-cat-parent {
 	background-color: #0061B6;
+	overflow: hidden;
 }
 
 .widget_product_categories .children li {
@@ -971,9 +968,15 @@ div.product div.images div.thumbnails a {
 	text-decoration: underline;
 }
 
+.flags-container-header a {
+	opacity: 0.5;
+}
+
 .flags-container-header {	
 	width: auto;
-	display: inline-block;
+	display: block;
+	float: right;
+	margin-top: 3px;
 }
 
 
@@ -984,14 +987,15 @@ div.product div.images div.thumbnails a {
 }
 
 .flags-container-header a .sk, .flags-container-header a .cz {
-	width: 28px;
-	height: 19px;
+	width: 24px;
+	height: 14px;
 	display: inline-block;
 	background-repeat: no-repeat;
 	margin-left: 6px;
 	cursor: pointer;
 	vertical-align: middle;
-	opacity: 0.5;
+	background-size: contain;
+
 }
 
 .flags-container-header .sk {
@@ -1005,11 +1009,12 @@ div.product div.images div.thumbnails a {
 
  
 
-.flags-container-header a:hover .cz,
-.flags-container-header a:hover .sk,
-.flags-container-header .active .cz,
-.flags-container-header .active .sk { 
+.flags-container-header a:hover,
+.flags-container-header a:hover,
+.flags-container-header .active,
+.flags-container-header .active { 
 	opacity: 1;
+	color: #0061b6 !important;
 }
 
 
@@ -1019,11 +1024,12 @@ div.product div.images div.thumbnails a {
 	margin-bottom: 3px;
 	vertical-align: bottom;
 }
-
+/*
 .phone-info {
     padding: 3px 0 2px 0;
 	margin-top: 5px !important;
 }
+*/
 
 .header_color a:hover {
 	color: #444;
@@ -1032,6 +1038,15 @@ div.product div.images div.thumbnails a {
 body.home .breadcrumb,
 #shipping_country_field,
 #billing_country_field { display: none; }
+
+.breadcrumbs { 
+	position: absolute;
+	margin-top: 10px;
+}
+
+.breadcrumbs a {
+	color: #4d4d4d;
+}
 
 .av-menu-button-bordered .avia-menu-text {
 	background-color: white;
@@ -1080,16 +1095,14 @@ body.home .breadcrumb,
 
 #advanced_menu_toggle { margin-right: 30px; }
 
+.phone-info {
+    background-color: #FFA726;        
+    padding: 0px 14px;    
+}
+.phone-info .contact-header a {
+	font-weight: bold;    
+	color: white !important;
 
-#feedbackButton {
-    background-color: #FFA726;
-    display: inline-block;
-    margin-top: 0px;
-    padding: 2px 7px;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 11px;
-	color: white;
 }
 
 #feedbackButton:hover { text-decoration: none; }
@@ -1115,3 +1128,11 @@ body.home .breadcrumb,
     text-transform: uppercase;
 }
 /* bulk discounts plugin END */
+body.search .page-heading-container {
+	border: none !important;
+	margin-bottom:0;
+}
+.entry-info-wrap .entry-image img {
+	width: 80px;
+	height: 80px;
+}

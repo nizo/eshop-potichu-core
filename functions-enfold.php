@@ -269,6 +269,12 @@ if(!function_exists('avia_title'))
 {
 	function avia_title($args = false, $id = false)
 	{
+
+		/* disable breadcrumbs */
+		return;
+		
+		return '<div class="container" style="position: relative; z-index: 10;"><div class="title_container">' . avia_breadcrumbs(array('separator' => '/', 'richsnippet' => true)) . '</div></div>';
+		
 		global $avia_config;
 
 		if(!$id) $id = avia_get_the_id();

@@ -43,57 +43,16 @@ if (have_posts()) :
                 $markup = avia_markup_helper(array('context' => 'entry_title','echo'=>false));
                 echo "<h2 class='post-title entry-title'><a title='".the_title_attribute('echo=0')."' href='".get_permalink()."' $markup>".get_the_title()."</a></h2>";
 
-                ?>
-                <span class='post-meta-infos'>
-                    <?php
-                    if(get_post_type() !== "page")
-                    {
-                        if ( get_comments_number() != "0" || comments_open() )
-                        {
-                            echo "<span class='text-sep'>/</span>";
-                            echo "<span class='comment-container minor-meta'>";
-                            comments_popup_link(  "0 ".__('Comments','avia_framework'),
-                                                  "1 ".__('Comment' ,'avia_framework'),
-                                                  "% ".__('Comments','avia_framework'),'comments-link',
-                                                  "".__('Comments Disabled','avia_framework'));
-                            echo "</span>";
-                        }
-                    }
-
-
-                    $taxonomies  = get_object_taxonomies(get_post_type($the_id));
-                    $cats = '';
-                    $excluded_taxonomies =  apply_filters('avf_exclude_taxonomies', array('post_tag','post_format'), get_post_type($the_id), $the_id);
-
-                    if(!empty($taxonomies))
-                    {
-                        foreach($taxonomies as $taxonomy)
-                        {
-                            if(!in_array($taxonomy, $excluded_taxonomies))
-                            {
-                                $cats .= get_the_term_list($the_id, $taxonomy, '', ', ','').' ';
-                            }
-                        }
-                    }
-
-                    if(!empty($cats))
-                    {                        
-                        echo '<span class="blog-categories minor-meta"> ';
-                        //echo $cats;
-                        echo '</span>';
-                    }
-
-                    ?>
-
-                </span>
+            ?> 
             </header>
+			
 
             <?php
                 echo '<div class="entry-content" '.avia_markup_helper(array('context' => 'entry_content','echo'=>false)).'>';
                 $excerpt = trim(get_the_excerpt());
                 if(!empty($excerpt))
                 {
-                    the_excerpt();
+                    echo get_the_excerpt();
                 }
                 else
                 {

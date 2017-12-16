@@ -99,7 +99,6 @@ transform: 			translate(-50%, 0);
 .av_icon_active_right .social_bookmarks{ float: right; }
 .av_secondary_right .sub_menu{float:right;}
 .av_phone_active_left .phone-info{ float: left; }
-.av_phone_active_right .phone-info{ float: right; }
 
 
 /*header with social icons and bottom nav */
@@ -107,9 +106,6 @@ transform: 			translate(-50%, 0);
 .phone-info {
 float: left;
 font-weight: bold;
-line-height: 20px;
-font-size: 11px;
-padding:5px 0;
 }
 
 
@@ -628,23 +624,17 @@ position: absolute;
 z-index: 9999999;
 padding:0;
 width: 300px;
-top: 85% !important;
+top: 26% !important;
 margin-left: -120px;
 border-radius: 2px;
-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.2);
+box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.3);
 border-width:1px;
 border-style: solid;
 }
 
-
-.avia-search-tooltip .avia-arrow-wrap{
-width:20px;
-height:20px;
-position: absolute;
-top:-20px;
-right:10px;
-margin-left:-10px;
-overflow: hidden;
+#top #searchsubmit {
+	background-color:#0061b6 !important;
+	color: white !important;
 }
 
 .avia-arrow{
@@ -671,7 +661,15 @@ top: 15px;
 #top #searchform>div{position: relative;  max-width: 300px;}
 #top .widget #searchform>div{margin:0; max-width: 100%;}
 #top #searchform br{display:none;}
-#top #s{width:100%; position: relative; padding:11px 47px 11px 5px;  z-index: 1; margin:0; box-shadow: none;}
+#top #s{
+	width:100%;
+	position: relative;
+	padding:11px 47px 11px 12px;
+	z-index: 1;
+	margin:0;
+	box-shadow: none;
+	color: rgb(132,132,132);
+}
 #top #searchsubmit, .ajax_load{
 width: 40px;
 height: 39px;
@@ -687,9 +685,6 @@ min-width: 40px;
 .avia_mobile #top #searchsubmit, .avia_mobile .ajax_load{
 height: 41px;
 }
-
-
-.avia-search-tooltip #searchform>div{ margin:16px; }
 
 .ajax_load{
 z-index: 5;
@@ -797,11 +792,6 @@ border:none;
 
 /*title container*/
 
-/*avia title big*/
-.title_container{
-position: relative;
-}
-
 #top .title_container .container{
 padding-top:10px;
 padding-bottom:10px;
@@ -834,13 +824,9 @@ margin: 1.3em 0 0 0;
 
 
 .title_container .breadcrumb {
-z-index: 10;
-line-height: 15px;
-font-size: 11px;
-position: absolute;
-right: 50px;
-top:50%;
-margin-top: -7px;
+	line-height: 15px;
+	font-size: 11px;
+	right: 50px;
 }
 
 .breadcrumb a{text-decoration: none;}
@@ -1302,8 +1288,6 @@ z-index: 1;
 
 /*right sidebar - default*/
 #top #main .sidebar{
-border-left-style:solid;
-border-left-width:1px;
 margin-left:0;
 float: none;
 width: auto;
@@ -1354,21 +1338,7 @@ border-right-style: dashed;
 display:none;
 }
 
-
-/*left sidebar*/
-#top #main .sidebar_left .sidebar{
-
-/*
-border-right-style:solid;
-border-right-width:1px;
-*/
-
-border-left: 1px solid transparent;
-
-}
-
 .sidebar_left .inner_sidebar{
-margin-right:50px;
 margin-left:0;
 }
 
@@ -1931,29 +1901,27 @@ padding: 0 0 10px 0;
 
 #top .template-search.content .entry-content-wrapper {
 padding-bottom: 40px;
-padding-left:55px;
+padding-left:72px;
 font-size: 13px;
 clear:both;
-}
-
-.template-search .pagination {
-padding: 1px 50px 10px 55px;
+max-width: 720px;
 }
 
 .template-search .entry-content-wrapper .post-title {font-size:19px;}
 #top .template-search .entry-content-wrapper .post-title a:hover{ text-decoration: underline; }
 
 .search-result-counter {
-position: absolute;
-left: 0;
-top: 1px;
-box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.2);
-height: 44px;
-line-height: 24px;
-padding: 10px;
-text-align: center;
-border-radius: 100px;
-width: 44px;
+	position: absolute;
+	left: 0;
+	top: 1px;
+	box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.2);
+	height: 60px;
+	line-height: 24px;
+	padding: 10px;
+	text-align: center;
+	border-radius: 100px;
+	width: 60px;
+	background-size: cover !important;
 }
 
 #top #search-fail{padding-left:0;}
@@ -2618,7 +2586,9 @@ left: auto;
 top:1px;
 }
 
+/*
 .sidebar_left.sidebar{text-align: right;}
+*/
 
 .sidebar_left .news-thumb{float:right; margin: 4px 0 0 9px;}
 
@@ -3148,7 +3118,6 @@ animation:         avia_pop_small 0.5s 1 cubic-bezier(0.175, 0.885, 0.320, 1.275
 		.responsive #top .av-related-style-full .no_margin.av_one_half.relThumb{display: block; width:100%; clear:both;}
 		
 		/*all templates*/
-		.responsive .title_container .breadcrumb{position: relative;right:auto; top:-6px; margin:0; left:-2px;}
 		.responsive .pagination{padding-left: 0; padding-right: 0;}
 		.responsive #header .main_menu ul{display:none;}
 

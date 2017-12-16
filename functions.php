@@ -262,7 +262,8 @@ if(!function_exists('avia_register_frontend_scripts'))
 		$template_url = get_template_directory_uri();
 		$child_theme_url = get_stylesheet_directory_uri();
 		
-		$suffix = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
+		$suffix = (defined('POTICHU_DEBUG') && POTICHU_DEBUG) ? '' : '.min';
+		$version = 2;
 
 		wp_enqueue_script( 'avia-default', $template_url.'/js/avia' . $suffix . '.js', array('jquery'), 3, true );
 		wp_enqueue_script( 'avia-shortcodes', $template_url.'/js/shortcodes' . $suffix . '.js', array('jquery'), 3, true );
@@ -277,7 +278,7 @@ if(!function_exists('avia_register_frontend_scripts'))
 			wp_enqueue_style( 'avia-layout',  $template_url."/css/layout.css", array(), 	'3', 'all' );
 			wp_enqueue_style( 'avia-scs',     $template_url."/css/shortcodes.css", array(), '2', 'all' );
 		} else {
-			wp_enqueue_style( 'bundled',     $template_url."/css/bundled.css");
+			wp_enqueue_style( 'bundled',     $template_url."/css/bundled.css", array(), $version);
 		}
 
 		// gulp cannot process this css file, load it directly...		
@@ -1478,7 +1479,7 @@ function addResourceHints( $hints, $relation_type ) {
 		$hints[] = '//app.livechatoo.com';		
     } else if ( 'prefetch' === $relation_type ) {
 		
-		$hints[] = get_site_url(null, '/wp-content/themes/enfold/config-woocommerce/woocommerce-mod.min.css');
+		$hints[] = get_site_url(null, '/wp-content/themes/enfold/config-woocommerce/woocommerce-mod.css');
 		/*
 		$hints[] = get_site_url(null, '/wp-includes/js/jquery/jquery.js');
 		$hints[] = get_site_url(null, '/wp-content/themes/enfold/js/shortcodes.js');

@@ -36,7 +36,7 @@ if(!is_admin()){
 
 function avia_woocommerce_register_assets()
 {
-	wp_enqueue_style( 'avia-woocommerce-css', AVIA_BASE_URL.'config-woocommerce/woocommerce-mod.min.css');
+	wp_enqueue_style( 'avia-woocommerce-css', AVIA_BASE_URL.'config-woocommerce/woocommerce-mod.css');
 	wp_enqueue_script( 'avia-woocommerce-js', AVIA_BASE_URL.'config-woocommerce/woocommerce-mod.min.js', array('jquery'), 1, true);
 }
 
@@ -444,14 +444,17 @@ if(!function_exists('avia_woocommerce_breadcrumb'))
 		{
 
 			$home 		= $trail[0];
-			$last 		= array_pop($trail);
+			if (is_array($trail)) {
+				$last 		= array_pop($trail);
+			} else $last = '';
+			
 			$shop_id 	= woocommerce_get_page_id('shop');
 			$taxonomy 	= "product_cat";
 
 			// on the shop frontpage simply display the shop name, rather than shop name + "All Products"
 			if(is_shop())
 			{
-				if(!empty($shop_id) && $shop_id  != -1)  $trail = array_merge( $trail, avia_breadcrumbs_get_parents( $shop_id ) );
+				//if(!empty($shop_id) && $shop_id  != -1)  $trail = array_merge( $trail, avia_breadcrumbs_get_parents( $shop_id ) );
 				$last = "";
 
 				if(is_search())

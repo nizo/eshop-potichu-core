@@ -183,9 +183,9 @@ function avia_breadcrumbs( $args = array() ) {
 	/* Set up the default arguments for the breadcrumb. */
 	$defaults = array(
 		'separator' => '&raquo;',
-		'before' => '<span class="breadcrumb-title">' . __( 'You are here:', 'avia_framework' ) . '</span>',
+		'before' => '',
 		'after' => false,
-		'front_page' => true,
+		'front_page' => false,
 		'show_home' => 'Hlavná stránka',
 		'echo' => false,
 		'show_posts_page' => true,

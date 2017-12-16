@@ -1,5 +1,7 @@
 // SERVICE WORKER
 if ('serviceWorker' in navigator) {
+
+	/*
 	navigator.serviceWorker.register('../../sw.min.js').then(function(registration) {
 		// Registration was successful
 		console.log('ServiceWorker registration successful with scope: ', registration.scope);
@@ -7,6 +9,7 @@ if ('serviceWorker' in navigator) {
 		// registration failed :(
 		console.log('ServiceWorker registration failed: ', err);
 	});
+	*/
 } else if ("applicationCache" in window) {
 	/*
 	console.log("App cache version fallback");

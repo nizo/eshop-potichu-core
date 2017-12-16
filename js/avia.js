@@ -39,7 +39,7 @@
         new $.AviaTooltip({"class": 'avia-related-tooltip', data: 'avia-related-tooltip', scope: ".related_posts, .av-share-box", attach:'element', delay:0});
 
         //creates ajax search
-        new $.AviaAjaxSearch({scope:'#header'});
+        //new $.AviaAjaxSearch({scope:'#header'});
 
 		// actiavte portfolio sorting
 		if($.fn.avia_iso_sort)
@@ -1437,7 +1437,7 @@
 
 
 
-
+/*
 	$.AviaAjaxSearch  =  function(options)
 	{
 	   var defaults = {
@@ -1455,7 +1455,7 @@
         this.bind_events();
 	}
 
-
+	
 	$.AviaAjaxSearch.prototype =
     {
         bind_events: function()
@@ -1520,6 +1520,7 @@
 			});
         }
     }
+	*/
 
 
 

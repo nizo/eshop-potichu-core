@@ -35,12 +35,7 @@ if($headerS['header_topbar'] == true)
 						$nav = "";
 						
 						//HIDE SOCIAL NETWORKS LINKS
-			            //if(strpos( $headerS['header_social'], 'extra_header_active') !== false) echo $icons;
-						
-						if (get_option('display_feedback_button')) {						
-							echo '<a id="feedbackButton" href=" ' . get_option('feedback_form_address') . '" target="_blank" rel="nofollow">'.  get_option('feedback_field_title', '--') . '</a>';
-						}
-						
+			            //if(strpos( $headerS['header_social'], 'extra_header_active') !== false) echo $icons;					
 						//display navigation
 						if(strpos( $headerS['header_secondary_menu'], 'extra_header_active') !== false )
 						{
@@ -57,8 +52,8 @@ if($headerS['header_topbar'] == true)
 			                );
 			                
 			                $nav = wp_nav_menu($args);
-						}
-			                
+						}						
+							
 						if(!empty($nav) || apply_filters('avf_execute_avia_meta_header', false))
 						{
 							echo "<nav class='sub_menu' ".avia_markup_helper(array('context' => 'nav', 'echo' => false)).">";
@@ -71,10 +66,11 @@ if($headerS['header_topbar'] == true)
 						//phone/info text	
 						$phone			= $headerS['header_phone_active'] != "" ? $headerS['phone'] : "";
 						$phone_class 	= !empty($nav) ? "with_nav" : "";
-						if($phone) 		{ echo "<div class='phone-info {$phone_class}'><span>".do_shortcode($phone)."</span></div>"; }
-							
-							
-			        ?>
+						if($phone) 		{ echo "<div class='phone-info {$phone_class}'>".do_shortcode($phone)."</div>"; }
+														
+					?>
+
+					<span class="flags-container-header"> <a href="http://eshop.potichu.sk/"><div class="shift">SK</div><div class="sk"></div></a> <a href="http://localhost/edsa-potichu-eshop/" class="active"><div class="shift">CZ</div><div class="cz"></div></a></span>
 			      </div>
 		</div>
 

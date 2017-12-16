@@ -32,7 +32,7 @@ html.responsive { min-width: 0px; }
   position: relative;
   /* z-index: 1; */
   border-top-style: solid;
-  border-top-width: 1px;
+  /*border-top-width: 1px;*/
 }
 
 .unit, .units {

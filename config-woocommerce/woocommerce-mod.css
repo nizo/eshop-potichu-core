@@ -825,7 +825,8 @@ margin-top: -6px;
 /*single product*/
 
 
-.single-product .template-shop{padding-top: 50px; }
+.single-product .template-shop{padding-top: 40px; }
+.tax-product_cat .template-shop { padding-top: 10px !important; }
 
 #top .price_container{
 position: relative;

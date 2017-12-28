@@ -1905,6 +1905,7 @@ padding-left:72px;
 font-size: 13px;
 clear:both;
 max-width: 720px;
+min-height: 115px;
 }
 
 .template-search .entry-content-wrapper .post-title {font-size:19px;}

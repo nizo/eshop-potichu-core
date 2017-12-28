@@ -2322,9 +2322,11 @@ background: rgba(0, 0, 0, 0);
 
 		.responsive #top .single-product-main-image .thumbnails a {width:30%;}
 
+		/*
         .responsive .shop_table .product-quantity{
             display: none;
-        }
+		}
+		*/
 		
 		.responsive  #top .single-product-main-image .onsale { top: 7px; right: 7px; }
 
@@ -2333,10 +2335,10 @@ background: rgba(0, 0, 0, 0);
 		.responsive #top .cart_dropdown.visible_cart {
 			position: fixed;
 			bottom: 20px;
-			top: auto;
 			margin: 0;
-			left: auto;
-			right: 20px;
+			top: auto;			
+			left: 20px;
+			right: auto;
 			width: 90px;
 			border: none;
 			height: 47px;

@@ -70,7 +70,29 @@ if($headerS['header_topbar'] == true)
 														
 					?>
 
-					<span class="flags-container-header"> <a href="http://eshop.potichu.sk/"><div class="shift">SK</div><div class="sk"></div></a> <a href="http://localhost/edsa-potichu-eshop/" class="active"><div class="shift">CZ</div><div class="cz"></div></a></span>
+					<span class="flags-container-header"> 
+
+					<?php
+					$webLocale = get_option('web_locale');
+			
+					switch ($webLocale) {
+						case 'sk':
+							echo '<a href="#"><div class="shift active">SK</div><div class="sk"></div></a>
+							<a href="http://eshop.potichu.sk/" ><div class="shift">CZ</div><div class="cz"></div></a>';
+							break;
+						case 'cs':
+							echo '<a href="http://eshop.potichu.sk/"><div class="shift">SK</div><div class="sk"></div></a>
+							<a href="#" class="active"><div class="shift">CZ</div><div class="cz"></div></a>';
+							break;
+						break;
+					}
+					?>
+
+						<!--
+						<a href="http://eshop.potichu.sk/"><div class="shift">SK</div><div class="sk"></div></a>						
+						<a href="#http://localhost/edsa-potichu-eshop/" class="active"><div class="shift">CZ</div><div class="cz"></div></a>
+						-->
+					</span>
 			      </div>
 		</div>
 

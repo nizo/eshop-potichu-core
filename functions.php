@@ -263,7 +263,7 @@ if(!function_exists('avia_register_frontend_scripts'))
 		$child_theme_url = get_stylesheet_directory_uri();
 		
 		$suffix = (defined('POTICHU_DEBUG') && POTICHU_DEBUG) ? '' : '.min';
-		$version = '1.2';
+		$version = '1.3';
 
 		wp_enqueue_script( 'avia-default', $template_url.'/js/avia' . $suffix . '.js', array('jquery'), 3, true );
 		wp_enqueue_script( 'avia-shortcodes', $template_url.'/js/shortcodes' . $suffix . '.js', array('jquery'), 3, true );

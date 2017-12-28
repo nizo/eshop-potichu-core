@@ -1559,4 +1559,8 @@ function remove_update_notifications( $value ) {
 }
 add_filter( 'site_transient_update_plugins', 'remove_update_notifications' );
 
-
+function wc_custom_user_redirect( $redirect, $user ) {	
+	$redirect = wp_get_referer() ? wp_get_referer() : home_url();
+	return $redirect;	
+}
+add_filter( 'woocommerce_login_redirect', 'wc_custom_user_redirect', 10, 2 );

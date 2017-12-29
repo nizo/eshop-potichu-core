@@ -1,6 +1,6 @@
 <?php
 global $avia_config;
-
+define('WEB_VERSION','1.4');
 /*
  * if you run a child theme and dont want to load the default functions.php file
  * set the global var below in you childthemes function.php to true:
@@ -263,7 +263,6 @@ if(!function_exists('avia_register_frontend_scripts'))
 		$child_theme_url = get_stylesheet_directory_uri();
 		
 		$suffix = (defined('POTICHU_DEBUG') && POTICHU_DEBUG) ? '' : '.min';
-		$version = '1.3';
 
 		wp_enqueue_script( 'avia-default', $template_url.'/js/avia' . $suffix . '.js', array('jquery'), 3, true );
 		wp_enqueue_script( 'avia-shortcodes', $template_url.'/js/shortcodes' . $suffix . '.js', array('jquery'), 3, true );
@@ -278,7 +277,7 @@ if(!function_exists('avia_register_frontend_scripts'))
 			wp_enqueue_style( 'avia-layout',  $template_url."/css/layout.css", array(), 	'3', 'all' );
 			wp_enqueue_style( 'avia-scs',     $template_url."/css/shortcodes.css", array(), '2', 'all' );
 		} else {
-			wp_enqueue_style( 'bundled',     $template_url."/css/bundled.css", array(), $version);
+			wp_enqueue_style( 'bundled',     $template_url."/css/bundled.css", array(), WEB_VERSION);
 		}
 
 		// gulp cannot process this css file, load it directly...		
@@ -1558,9 +1557,3 @@ function remove_update_notifications( $value ) {
     return $value;
 }
 add_filter( 'site_transient_update_plugins', 'remove_update_notifications' );
-
-function wc_custom_user_redirect( $redirect, $user ) {	
-	$redirect = wp_get_referer() ? wp_get_referer() : home_url();
-	return $redirect;	
-}
-add_filter( 'woocommerce_login_redirect', 'wc_custom_user_redirect', 10, 2 );

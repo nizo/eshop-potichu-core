@@ -1,6 +1,5 @@
 // SERVICE WORKER
 if ('serviceWorker' in navigator) {
-
 	/*
 	navigator.serviceWorker.register('../../sw.min.js').then(function(registration) {
 		// Registration was successful
@@ -27,15 +26,9 @@ var l = document.createElement('script'); l.type = 'text/javascript'; l.async = 
 l.src = 'http' + (document.location.protocol == 'https:' ? 's' : '') + '://app.livechatoo.com/js/web.min.js'; 
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(l, s);
 
-// GEOLOCATION
-var geolocationRequest = jQuery.getJSON( "https://geoip.nekudo.com/api/", function(response) {
 
-	if (response && response.country.code != eshopCountryCode) {
-			
-		var shopAdvisorCookie = readCookie('advisorClosed');
-		
-		if (!shopAdvisorCookie ) {
-			jQuery('#redirectAdvisor').show();
-		}
-	}		
-});
+function checkoutShowLoginSection() {	
+	jQuery('#checkoutLoginSection1').removeClass('hidden');
+	jQuery('#checkoutLoginSection2').removeClass('hidden');
+	jQuery('#loginIfPossibleParagraph').hide();
+}

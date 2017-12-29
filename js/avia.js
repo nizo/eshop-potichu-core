@@ -356,7 +356,7 @@
 			hide_menu = function()
 			{	
 				container.removeClass('show_mobile_menu');
-				setTimeout(function(){ container.css({'height':"auto", 'overflow':'hidden', 'minHeight':0}); },600);
+				container.css({'height':"auto", 'overflow':'hidden', 'minHeight':0});
 				return false;
 			},
 			autohide = function()
@@ -373,7 +373,7 @@
 				{
 					win.scrollTop(0);
 					container.addClass('show_mobile_menu');
-					set_height();
+					//set_height();
 				}
 				return false;
 			};

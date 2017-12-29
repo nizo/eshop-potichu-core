@@ -128,7 +128,7 @@
 		} //end blank & nofooterarea check
 		?>
 		
-			
+		<?php /*
 		<div id="redirectAdvisor" style="display: none;">
 			<?php
 			echo '<div class="headline">' . __('Zákazník z České republiky?','avia_framework') . '</div>';
@@ -140,6 +140,7 @@
 			echo '</div>';
 			?>
 		</div>
+		*/?>
 		
 		<!-- end main -->			
 		</div>
@@ -193,9 +194,6 @@
 			window.attachEvent("onload", downloadJSAtOnload);
 		else
 			window.onload = downloadJSAtOnload;
-
-
-
 		
 		/*
 		if (jQuery(".select").select2) {
@@ -211,51 +209,6 @@
 		$countryCode = get_option('web_locale', 'sk') == 'sk' ? 'SK' : 'CZ';
 		echo 'var eshopCountryCode = \'' . $countryCode . '\';' ;
 		?>
-		
-		function _closeAdvisor() {		
-			// log event to analytics..			
-			//_gaq.push(['_trackEvent', 'userCommunication', 'redirectRefused', 'user closed redirect advisor']);		
-			if (typeof ga !== 'undefined') {
-				ga('send', 'event', 'userCommunication', 'redirectRefused', 'user closed redirect advisor');
-			}
-					
-			jQuery('#redirectAdvisor').hide();
-			createCookie('advisorClosed', true, 14);
-		};
-		
-		function _redirectToForeignShop() {		
-			// log event to analytics..	
-			//_gaq.push(['_trackEvent', 'userCommunication', 'redirect', 'user redirected to foreign store'])		
-			if (typeof ga !== 'undefined') {
-				ga('send', 'event', 'userCommunication', 'redirect', 'user redirected to foreign store');
-			}
-			
-			// redirect 
-			window.location = "<?php echo get_option('foreign_eshop_address', 'https://eshop.potichu.sk'); ?>";
-		}
-		
-		function createCookie(name,value,days) {
-			if (days) {
-				var date = new Date();
-				date.setTime(date.getTime()+(days*24*60*60*1000));
-				var expires = "; expires="+date.toGMTString();
-			}
-			else var expires = "";
-			document.cookie = name+"="+value+expires+"; path=/";
-		}
-
-		function readCookie(name) {
-			
-			var nameEQ = name + "=";
-			var ca = document.cookie.split(';');
-					
-			for(var i=0;i < ca.length;i++) {
-				var c = ca[i];
-				while (c.charAt(0)==' ') c = c.substring(1,c.length);
-				if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-			}
-			return null;
-		}
 		
 		function reflectResizedWindow() {
 		

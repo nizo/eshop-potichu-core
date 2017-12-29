@@ -264,7 +264,7 @@ if(!function_exists('avia_register_frontend_scripts'))
 		
 		$suffix = (defined('POTICHU_DEBUG') && POTICHU_DEBUG) ? '' : '.min';
 
-		wp_enqueue_script( 'avia-default', $template_url.'/js/avia' . $suffix . '.js', array('jquery'), 3, true );
+		wp_enqueue_script( 'avia-default', $template_url.'/js/avia' . $suffix . '.js', array('jquery'), WEB_VERSION, true );
 		wp_enqueue_script( 'avia-shortcodes', $template_url.'/js/shortcodes' . $suffix . '.js', array('jquery'), 3, true );
 		wp_enqueue_script( 'avia-popup',  $template_url.'/js/aviapopup/jquery.magnific-popup.min.js', array('jquery'), 2, true);					
 		wp_enqueue_script( 'jquery' );		

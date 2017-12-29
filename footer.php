@@ -177,39 +177,27 @@
 
 	wp_footer();
 ?>
-		
-		
-		
-		
+								
 	<script type="text/javascript">
 	
-		function downloadJSAtOnload() {
-			var element = document.createElement("script");
-			element.src = "<?php echo get_stylesheet_directory_uri() . '/js/potichu-deferred-scripts.js' ?>";
-			document.body.appendChild(element);
+		// LIVECHATOO
+		livechatooCmd = function() {
+			livechatoo.embed.init({
+				account : 'potichu',
+				lang: '<?php echo get_option('web_locale', 'sk') == 'sk' ? 'sk' : 'cs'; ?>',
+				side : 'right'
+			})
+		};	
+		var l = document.createElement('script'); l.type = 'text/javascript'; l.async = !0;
+		l.src = 'http' + (document.location.protocol == 'https:' ? 's' : '') + '://app.livechatoo.com/js/web.min.js'; 
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(l, s);
+
+		function checkoutShowLoginSection() {	
+			jQuery('#checkoutLoginSection1').removeClass('hidden');
+			jQuery('#checkoutLoginSection2').removeClass('hidden');
+			jQuery('#loginIfPossibleParagraph').hide();
 		}
-		if (window.addEventListener)
-			window.addEventListener("load", downloadJSAtOnload, false);
-		else if (window.attachEvent)
-			window.attachEvent("onload", downloadJSAtOnload);
-		else
-			window.onload = downloadJSAtOnload;
-		
-		/*
-		if (jQuery(".select").select2) {
-			console.log('yep deploying');
-			jQuery(".select").select2({
-				minimumResultsForSearch: 10,
-				placeholder: "Okres je dôležitý pre správny výpočet ceny dopravy",
-			});		
-		}
-		*/
-		
-		<?php
-		$countryCode = get_option('web_locale', 'sk') == 'sk' ? 'SK' : 'CZ';
-		echo 'var eshopCountryCode = \'' . $countryCode . '\';' ;
-		?>
-		
+	
 		function reflectResizedWindow() {
 		
 			var windowWidth = window.innerWidth;			
@@ -234,5 +222,6 @@
 		});
 	
 	</script>
+
 </body>
 </html>

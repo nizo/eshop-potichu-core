@@ -1,6 +1,6 @@
 <?php
 global $avia_config;
-define('WEB_VERSION','1.4');
+define('WEB_VERSION','1.5');
 /*
  * if you run a child theme and dont want to load the default functions.php file
  * set the global var below in you childthemes function.php to true:
@@ -1557,3 +1557,9 @@ function remove_update_notifications( $value ) {
     return $value;
 }
 add_filter( 'site_transient_update_plugins', 'remove_update_notifications' );
+
+function redirect_after_logout(){
+  wp_redirect( home_url() );
+  exit();
+}
+add_action('wp_logout', 'redirect_after_logout');

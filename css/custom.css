@@ -1145,3 +1145,7 @@ body.search .page-heading-container {
 .main_color table caption, .main_color tr:nth-child(even), .main_color .pricing-table>li:nth-child(even) { 
 	color: inherit !important;
 }
+
+.main_color #payment {
+	background-color: transparent !important;
+}

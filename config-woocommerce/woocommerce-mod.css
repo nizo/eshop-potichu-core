@@ -1071,7 +1071,7 @@ border-radius: 2px;
 
 #top #main .shop_table.order_details{
 border-collapse: separate;
-padding:5px;
+padding:0px;
 }
 
 
@@ -1101,8 +1101,10 @@ border:none;
 }
 
 div table.shop_table td {
-padding: 6px 12px;
-vertical-align: middle;
+
+padding: 6px 12px;
+
+vertical-align: middle;
 }
 
 #top table.shop_table .actions .button{

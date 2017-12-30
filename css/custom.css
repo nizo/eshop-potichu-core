@@ -684,8 +684,8 @@ div .products .inner_product_header a {
 }
 
 .price-per-area {
-	margin-top: -10px;
-	margin-bottoM: 10px;
+	margin-top: -6px;
+	margin-bottoM: 2px;
 	display: block !important;
 }
 
@@ -1130,7 +1130,6 @@ body.search .page-heading-container {
 	width: 80px;
 	height: 80px;
 }
-
 
 #wrap_all.show_mobile_menu #mobile-advanced{
 	display: block;

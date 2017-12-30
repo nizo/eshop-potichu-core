@@ -634,10 +634,7 @@ margin: 0 1% 1%  0;
 width: 19.2%;
 }
 
-.shop_columns_3 .products .product {
-margin: 0 1% 1% 0;
-width: 32.6%;
-}
+.shop_columns_3 .products .product {margin: 0 1% 2% 0;width: 32.6%;}
 
 .shop_columns_2 .products .product {
 width: 49.5%;

@@ -1,6 +1,6 @@
 <?php
 global $avia_config;
-define('WEB_VERSION','1.5');
+define('WEB_VERSION','1.6');
 /*
  * if you run a child theme and dont want to load the default functions.php file
  * set the global var below in you childthemes function.php to true:
@@ -18,7 +18,6 @@ if(isset($avia_config['use_child_theme_functions_only'])) return;
  * create a global var which stores the ids of all posts which are displayed on the current page. It will help us to filter duplicate posts
  */
 $avia_config['posts_on_current_page'] = array();
-
 
 /*
  * wpml multi site config file

@@ -175,6 +175,7 @@ function cart_improvement_functions()
 //small function that improves shoping cart hover behaviour in the menu
 function cart_dropdown_improvement()
 {
+	return;
 	var dropdown = jQuery('.cart_dropdown'), subelement = dropdown.find('.dropdown_widget').css({display:'none', opacity:0});
 	
 	dropdown.hover(

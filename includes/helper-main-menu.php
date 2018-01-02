@@ -16,7 +16,7 @@ if(isset($headerS['disabled'])) return;
 if($responsive)
 {
 	echo '<a id="advanced_menu_toggle" href="#" '.av_icon_string('mobile_menu').'></a>';
-	echo '<a id="advanced_menu_hide" href="#" 	'.av_icon_string('close').'></a>';
+	//echo '<a id="advanced_menu_hide" href="#" 	'.av_icon_string('close').'></a>';
 }
 
 

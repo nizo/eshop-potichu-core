@@ -36,8 +36,9 @@ if(!is_admin()){
 
 function avia_woocommerce_register_assets()
 {
+	$suffix = (defined('POTICHU_DEBUG') && POTICHU_DEBUG) ? '' : '.min';
 	wp_enqueue_style( 'avia-woocommerce-css', AVIA_BASE_URL.'config-woocommerce/woocommerce-mod.css', array(), WEB_VERSION);
-	wp_enqueue_script( 'avia-woocommerce-js', AVIA_BASE_URL.'config-woocommerce/woocommerce-mod.min.js', array('jquery'), 1, true);
+	wp_enqueue_script( 'avia-woocommerce-js', AVIA_BASE_URL.'config-woocommerce/woocommerce-mod' . $suffix . '.js', array('jquery'), WEB_VERSION, true);
 }
 
 
@@ -803,7 +804,8 @@ add_action( 'init', 'avia_woocommerce_cart_placement', 10);
 
 function avia_woocommerce_cart_placement()
 {
-	$position = avia_get_option('header_position',  'header_top') == "header_top" ? "ava_main_header" : "ava_inside_main_menu";
+	//$position = avia_get_option('header_position',  'header_top') == "header_top" ? "ava_main_header" : "ava_inside_main_menu";
+	$position = "ava_inside_main_menu";
 	add_action( $position, 'avia_woocommerce_cart_dropdown', 10);
 }
 
@@ -818,7 +820,8 @@ function avia_woocommerce_cart_dropdown()
 
 	$output = "";
 	$output .= "<ul class = 'cart_dropdown' data-success='".__('was added to the cart', 'avia_framework')."'><li class='cart_dropdown_first'>";
-	$output .= "<a class='cart_dropdown_link' href='".$link."'><span class='avia_hidden_link_text'>".__('Cart','avia_framework')."</span><span ".av_icon_string('cart')."></span></a><!--<span class='cart_subtotal'>".$cart_subtotal."</span>-->";
+	//$output .= "<a class='cart_dropdown_link' href='".$link."'><span class='avia_hidden_link_text'>".__('Cart','avia_framework')."</span><span ".av_icon_string('cart')."></span></a><!--<span class='cart_subtotal'>".$cart_subtotal."</span>-->";
+	$output .= "<a class='cart_dropdown_link' href='".$link."'><span ".av_icon_string('cart')."></span></a><span class='cart_subtotal'>".$cart_subtotal."</span>";
 	$output .= "<div class='dropdown_widget dropdown_widget_cart'><div class='avia-arrow'></div>";
 	$output .= '<div class="widget_shopping_cart_content"></div>';
 	$output .= "</div>";

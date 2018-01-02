@@ -101,7 +101,7 @@ body .unit.alpha, body .units.alpha {
     float:none;
   }
   
-  #advanced_menu_toggle { margin-right: 0px !important; }
+  #advanced_menu_toggle {/* margin-right: 0px !important; */}
   .responsive .units, .responsive .unit {
     margin: 0;
   }

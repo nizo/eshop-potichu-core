@@ -1,6 +1,7 @@
 <?php
+define('WEB_VERSION','1.7.11');
+
 global $avia_config;
-define('WEB_VERSION','1.7');
 /*
  * if you run a child theme and dont want to load the default functions.php file
  * set the global var below in you childthemes function.php to true:

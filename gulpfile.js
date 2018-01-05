@@ -7,7 +7,6 @@ var replace = require('gulp-replace');
 var bump = require('gulp-bump');
 var fs = require('fs');
 var semver = require('semver');
-var push = require('git-push');
 
 
 gulp.task('minify-css', function () {
@@ -54,10 +53,4 @@ gulp.task('bump', function () {
 	  .pipe(gulp.dest('./'));
 });
   
-gulp.task('push', function(){
-	push('./', 'https://github.com/nizo/potichu-eshop-core', function() {
-	  console.log('Push successfull!');
-	});
-});
-  
-gulp.task('default', ['minify-js', 'concatenate-css', 'bump', 'push']);
+gulp.task('default', ['minify-js', 'concatenate-css', 'bump']);

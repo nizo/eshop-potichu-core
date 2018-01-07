@@ -3,75 +3,69 @@
 REM color 0a
 title Eshop Potichu - Deployment Tool
 
+:Menu
 echo.
 echo.
-echo Select Deployment Mode
-echo ======================
-echo 0. Deploy only
+echo Select Task
+echo ===========
+echo.
+echo 0. PHPloy status
 echo 1. Git status
-echo 9. Build and deploy
+echo 2. Build new version
+echo 3. Push new version to Git
+echo 4. Deploy to server
+echo 9. Exit
+
 echo.
 
 set /p a=
 if "%a%"=="0" (
-	GOTO Deploy
-)
-
+	echo.
+	echo.
+	echo PHPloy status
+	echo =============
+	GOTO PhployStatus
+) 
 if "%a%"=="1" (
 	echo.
 	echo.
 	echo Git status
 	echo ==========
 	call git status
-	set /p exit=
-	GOTO :EOF
+	GOTO Menu
 ) 
+
+if "%a%"=="2" (
+	GOTO BuildNewVersion
+)
+
+if "%a%"=="3" (	
+	GOTO PushToGit
+) 
+
+if "%a%"=="4" (
+	GOTO Deploy
+)
+
 if "%a%"=="9" (
-	GOTO CheckIfDeployFeasible
+	GOTO :EOF
 ) 
 
-
-:CheckIfDeployFeasible
+:BuildNewVersion
 echo.
 echo.
-echo Check if deploy feasible
-echo ========================
-call git status
-
-echo.
-echo.
-echo What to do?
-echo ===========
-echo 0. No need for rebuild/checkin/deploy
-echo 9. Rebuild, checkin, deploy
-
-set /p b=
-if "%b%"=="0" (
-	echo.
-	echo Build/Deployment not started	
-	set /p exit=
-	GOTO :EOF
-)
-if "%b%"=="9" (
-	GOTO PrepareDeploy
-)
-
-
-:PrepareDeploy
-echo.
-echo.
-echo Build app
-echo =========
+echo Build new version
+echo =================
 call gulp
-GOTO PushToGit
+GOTO Menu
+
 
 :PushToGit
-echo.
-echo.
-echo Commit new version to git?
-echo ==========================
+
+echo Are you sure?
+echo =============
 echo 0. No
-echo 9. Yes
+echo 1. Yes
 echo.
 
 set /p c=
@@ -81,16 +75,25 @@ if "%c%"=="0" (
 	echo Commit aborted!
 	echo ===============
 	set /p exit=
-	GOTO :EOF	
 )
-if "%c%"=="9" (
+if "%c%"=="1" (
 	set /p d="Enter commit description: "
 	call git add -A
 	call git commit -m "%d%" -a
 	call git push
-	GOTO Deploy
 )
+GOTO Menu
 
+
+
+:PhployStatus
+echo.
+echo.
+echo PHPloy status
+echo =============
+echo.
+call phploy -l
+GOTO Menu
 
 :Deploy
 echo.
@@ -104,44 +107,20 @@ echo.
 
 set /p e=
 if %e%==0 (
-	echo.
-	echo Checking status of potichu-beta
-	echo ===============================
-	echo.
-	call phploy -l --server potichu-beta
-		
-	echo.
-	echo.
 	echo Press enter to deploy files to potichu-beta
 	set /p f=
 	
 	call phploy --server potichu-beta
 )
 
-if %e%==7 (
-	echo.
-	echo Checking status of potichu-sk
-	echo =============================
-	echo.
-	call phploy -l --server potichu-sk
-	
-	echo.
-	echo.	
+if %e%==7 (	
 	echo Press enter to deploy files to potichu-sk
 	set /p f=
 		
 	call phploy --server potichu-sk
 )
 
-if %e%==8 (
-	echo.
-	echo Checking status of potichu-cz
-	echo ===============================
-	echo.
-	call phploy -l --server potichu-cz
-	
-	echo.
-	echo.
+if %e%==8 (	
 	echo Press enter to deploy files to potichu-cz
 	set /p f=
 		

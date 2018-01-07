@@ -1,15 +1,17 @@
 {
   "name": "potichu-eshop-core",
-  "version": "1.7.16",
+  "version": "1.7.17",
   "description": "Repository of custom tailored wordpress theme. www.potichu.sk",
   "main": "gulpfile.js",
   "dependencies": {},
   "devDependencies": {
     "git-push": "^0.1.1",
     "gulp": "^3.9.1",
+    "gulp-bump": "^3.0.0",
     "gulp-concat-css": "^2.3.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.6.1",
     "gulp-uglify": "^3.0.0"
   },
   "scripts": {

@@ -20,10 +20,6 @@ echo.
 
 set /p a=
 if "%a%"=="0" (
-	echo.
-	echo.
-	echo PHPloy status
-	echo =============
 	GOTO PhployStatus
 ) 
 if "%a%"=="1" (
@@ -31,6 +27,7 @@ if "%a%"=="1" (
 	echo.
 	echo Git status
 	echo ==========
+	echo.
 	call git status
 	GOTO Menu
 ) 
@@ -56,34 +53,23 @@ echo.
 echo.
 echo Build new version
 echo =================
+echo.
 call gulp
 GOTO Menu
 
 
 :PushToGit
 
-echo Are you sure?
-echo =============
-echo 0. No
-echo 1. Yes
 echo.
-
-set /p c=
-if "%c%"=="0" (
-	echo.
-	echo.
-	echo Commit aborted!
-	echo ===============
-	set /p exit=
-)
-if "%c%"=="1" (
-	set /p d="Enter commit description: "
-	call git add -A
-	call git commit -m "%d%" -a
-	call git push
-)
+echo.
+echo Enter commit description
+echo ========================
+echo.
+set /p d=
+call git add -A
+call git commit -m "%d%" -a
+call git push
 GOTO Menu
-
 
 
 :PhployStatus
@@ -100,6 +86,7 @@ echo.
 echo.
 echo Select deployment destination
 echo =============================
+echo.
 echo 0. beta
 echo 7. eshop.potichu.sk
 echo 8. eshop.potichu.cz

@@ -10,12 +10,12 @@ var semver = require('semver');
 
 
 gulp.task('minify-css', function () {
-    gulp.src(['./css/*.css','!./css/*.min.css'])
+    gulp.src(['./config-woocommerce/woocommerce-mod.css'])
     .pipe(minifyCss())
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('./css'));
+    .pipe(gulp.dest('./config-woocommerce'));
 });
 
 gulp.task('concatenate-css', function () {
@@ -53,4 +53,4 @@ gulp.task('bump', function () {
 	  .pipe(gulp.dest('./'));
 });
   
-gulp.task('default', ['minify-js', 'concatenate-css', 'bump']);
+gulp.task('default', ['minify-js', 'minify-css', 'concatenate-css', 'bump']);

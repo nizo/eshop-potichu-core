@@ -32,18 +32,12 @@ if(!is_admin()){
 	add_action('init', 'avia_woocommerce_register_assets');
 }
 
-
-
 function avia_woocommerce_register_assets()
 {
 	$suffix = (defined('POTICHU_DEBUG') && POTICHU_DEBUG) ? '' : '.min';
-	wp_enqueue_style( 'avia-woocommerce-css', AVIA_BASE_URL.'config-woocommerce/woocommerce-mod.css', array(), WEB_VERSION);
+	wp_enqueue_style( 'avia-woocommerce-css', AVIA_BASE_URL.'config-woocommerce/woocommerce-mod' . $suffix . '.css', array(), WEB_VERSION);
 	wp_enqueue_script( 'avia-woocommerce-js', AVIA_BASE_URL.'config-woocommerce/woocommerce-mod' . $suffix . '.js', array('jquery'), WEB_VERSION, true);
 }
-
-
-
-
 
 global $woocommerce;
 

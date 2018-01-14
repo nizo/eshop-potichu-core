@@ -3135,7 +3135,7 @@ animation:         avia_pop_small 0.5s 1 cubic-bezier(0.175, 0.885, 0.320, 1.275
 		.responsive .main_menu{/* position: initial; *//* position: relative; */display: inline-block;position: initial;}
 		.responsive .logo{/* position: static; *//* display:table; */height:80px !important;/* float:none; *//* padding:0; *//* border:none; *//* width:80%; *//* display: inline-block; *//* float: none; *//* clear: both; */margin-left: 0px;display: block;position: static;}
 		.responsive .logo a{/* display:table-cell; *//* vertical-align: middle; */} 
-		.responsive .logo img{height:auto !important; width:auto; max-width: 100%; display: block;  max-height: 80px;}
+		.responsive .logo img{height:auto !important;width:auto; max-width: 100%; display: block;max-height: 80px;}
 		.responsive #header_main .container{/* height:auto !important; *//* position: relative; */}
 		.responsive #top .header_bg { opacity: 1; filter: alpha(opacity=1); }
 		.responsive.social_header .phone-info {text-align: center; float:none; clear:both; margin:0; padding:0;}
@@ -3209,6 +3209,21 @@ animation:         avia_pop_small 0.5s 1 cubic-bezier(0.175, 0.885, 0.320, 1.275
 		.responsive #top .related_entries_container .av_one_eighth:nth-child(odd){clear:both;}
 		
 		.responsive.html_header_top #header_main .social_bookmarks {display:none;}
+	}
+
+	@media only screen and (max-width: 420px) {
+
+		.responsive .logo img {
+			margin-top: 15px !important;
+			max-width: 190px;
+		}
+
+		table div.quantity {
+			width: 100px;
+		}
+
+		#top div .quantity input.plus,
+		#top div .quantity input.minus { width: 25px;}
 	}
 
 

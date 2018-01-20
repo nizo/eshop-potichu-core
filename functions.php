@@ -1563,4 +1563,14 @@ function redirect_after_logout(){
   exit();
 }
 add_action('wp_logout', 'redirect_after_logout');
+
+
+function loop_columns() {
+	if (is_front_page())
+		return 4;
+	
+	return 3;
+}
+add_filter('loop_shop_columns', 'loop_columns');
 ?>
+

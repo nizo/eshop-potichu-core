@@ -1,6 +1,6 @@
 {
   "name": "potichu-eshop-core",
-  "version": "1.7.20",
+  "version": "1.7.21",
   "description": "Repository of custom tailored wordpress theme. www.potichu.sk",
   "main": "gulpfile.js",
   "dependencies": {},

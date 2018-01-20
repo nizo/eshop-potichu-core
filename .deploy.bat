@@ -88,8 +88,9 @@ echo Select deployment destination
 echo =============================
 echo.
 echo 0. beta
-echo 7. eshop.potichu.sk
-echo 8. eshop.potichu.cz
+echo 1. eshop.potichu.sk
+echo 2. eshop.potichu.cz
+echo 9. All instances
 echo.
 
 set /p e=
@@ -100,24 +101,31 @@ if %e%==0 (
 	call phploy --server potichu-beta
 )
 
-if %e%==7 (	
+if %e%==1 (	
 	echo Press enter to deploy files to potichu-sk
 	set /p f=
 		
 	call phploy --server potichu-sk
 )
 
-if %e%==8 (	
+if %e%==2 (	
 	echo Press enter to deploy files to potichu-cz
 	set /p f=
 		
 	call phploy --server potichu-cz
 )
 
+if %e%==9 (	
+	echo Press enter to deploy files to all instances
+	set /p f=
+		
+	call phploy
+)
+
 echo.
 echo.
-echo All done
-echo ========
+echo Deployment successfull
+echo ======================
 echo.
 echo.
 

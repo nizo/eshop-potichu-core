@@ -181,16 +181,20 @@
 	<script type="text/javascript">
 	
 		// LIVECHATOO
-		livechatooCmd = function() {
-			livechatoo.embed.init({
-				account : 'potichu',
-				lang: '<?php echo get_option('web_locale', 'sk') == 'sk' ? 'sk' : 'cs'; ?>',
-				side : 'right'
-			})
-		};	
-		var l = document.createElement('script'); l.type = 'text/javascript'; l.async = !0;
-		l.src = 'http' + (document.location.protocol == 'https:' ? 's' : '') + '://app.livechatoo.com/js/web.min.js'; 
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(l, s);
+		<?php
+		
+		if (!potichu_is_beta_version()) { ?>
+			livechatooCmd = function() {
+				livechatoo.embed.init({
+					account : 'potichu',
+					lang: '<?php echo get_option('web_locale', 'sk') == 'sk' ? 'sk' : 'cs'; ?>',
+					side : 'right'
+				})
+			};	
+			var l = document.createElement('script'); l.type = 'text/javascript'; l.async = !0;
+			l.src = 'http' + (document.location.protocol == 'https:' ? 's' : '') + '://app.livechatoo.com/js/web.min.js'; 
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(l, s);
+		<?php }	?>
 
 		/*
 		function checkoutShowLoginSection() {	

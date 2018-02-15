@@ -2,6 +2,14 @@
 
 //var_dump( get_intermediate_image_sizes());
 
+$palletteNeeded = get_post_meta(15524, 'potrebna_paleta', true);
+
+if ($palletteNeeded) echo 'yep';
+
+
+
+
+die();
 $sizes = get_intermediate_image_sizes();
 
 foreach ($sizes as $i)

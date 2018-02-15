@@ -1,5 +1,5 @@
 <?php
-define('WEB_VERSION','1.7.21'); 
+define('WEB_VERSION','1.7.22'); 
 
 global $avia_config;
 /*
@@ -494,22 +494,19 @@ function string_boolean($string){
 function get_package_dimensions($cartItems) {			
 		
 	$cartVolume = 0;			
-	foreach ( $cartItems as $item) {
-		
+	foreach ( $cartItems as $item) {		
 		$productData = $item['data'];
-		$productVolume = get_post_meta($productData->id, 'objem', true);
-				
+		$productVolume = get_post_meta($productData->id, 'objem', true);				
 		
 		$cartVolume += $productVolume * $item['quantity'];		
 	}
 	
 	return number_format($cartVolume, 2);
-	//return $cartVolume;
 }
 
 function potichu_get_order_dimensions($order) {					
-	$orderDimensions = 0;	
 	
+	$orderDimensions = 0;		
 	foreach( $order->get_items() as $item ) {	
 		$productData = $item['data'];
 		$productDimensions = get_post_meta($item['product_id'], 'objem', true);
@@ -518,7 +515,6 @@ function potichu_get_order_dimensions($order) {
 	}
 	
 	return number_format($orderDimensions, 2);
-	//return $orderDimensions;
 }
 
 function potichu_get_order_total_weight($order) {	
@@ -536,8 +532,17 @@ function potichu_get_order_total_weight($order) {
 	}		
 	return $weight . ' kg';
 }
-
-
+function potichu_shipping_needs_palllete_delivery($cartItems) {			
+	foreach ( $cartItems as $item) {		
+		$productData = $item['data'];
+		$palletteNeeded = get_post_meta($productData->id, 'potrebna_paleta', true);
+		if ($palletteNeeded) {
+			return get_option('pallette_price', 0);
+		}
+	}
+	
+	return 0;
+}
 
 function potichu_display_categories($input) {
 
@@ -1373,7 +1378,13 @@ function potichu_web_settings_register( $wp_customize ) {
 		'type'		=> 'option',
 		'default' 	=> false,
 		'transport'	=> 'refresh',
-	)); 
+	));
+
+	$wp_customize->add_setting( 'pallette_price' , array(
+		'type'		=> 'option',
+		'default'	=> 0,
+		'transport'	=> 'refresh',
+	));
 	
 	
 	// Sections
@@ -1382,11 +1393,7 @@ function potichu_web_settings_register( $wp_customize ) {
 		'priority'   => 1000,
 	) );
 		
-	// Controls
-	
-
-	
-	
+	// Controls			
 	$wp_customize->add_control(
 		'foreign_eshop_address_control', 
 		array(
@@ -1406,8 +1413,7 @@ function potichu_web_settings_register( $wp_customize ) {
 			'type'     => 'checkbox'
 		)
 	);
-	
-	
+		
 	$wp_customize->add_control(
 		'feedback_field_title_control', 
 		array(
@@ -1417,9 +1423,7 @@ function potichu_web_settings_register( $wp_customize ) {
 			'type'     => 'text'
 		)
 	);
-	
-	
-	
+			
 	$wp_customize->add_control(
 		'feedback_form_address_control', 
 		array(
@@ -1443,7 +1447,17 @@ function potichu_web_settings_register( $wp_customize ) {
 							)
 		)
 	);
-	
+		
+	$wp_customize->add_control(
+		'pallette_price_control', 
+		array(
+			'label'    => 'Pallette price',
+			'section'  => 'web_settings_section',
+			'settings' => 'pallette_price',
+			'type'     => 'text'
+		)
+	);
+
 	$wp_customize->add_control(
 		'beta_version_control', 
 		array(
@@ -1453,6 +1467,8 @@ function potichu_web_settings_register( $wp_customize ) {
 			'type'     => 'checkbox'
 		)
 	);
+
+	
 }
 add_action( 'customize_register', 'potichu_web_settings_register' );
 
@@ -1566,7 +1582,7 @@ add_action('wp_logout', 'redirect_after_logout');
 
 
 function loop_columns() {
-	if (is_front_page())
+	if (is_front_page() && potichu_is_beta_version())
 		return 4;
 	
 	return 3;

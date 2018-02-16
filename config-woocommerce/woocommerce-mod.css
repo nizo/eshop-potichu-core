@@ -1459,9 +1459,7 @@ border-left: 3px solid green;
 }
 
 
-#top #main .checkout_coupon #coupon_code{
-padding:15px;
-}
+#top #main .checkout_coupon #coupon_code{padding:15px;display: inline-block;}
 
 .form-row .lost_password {
 line-height: 49px;
@@ -1486,15 +1484,10 @@ dl{padding-bottom:10px; overflow: hidden;}
 #top div.woocommerce-error a.button:hover, #top div.woocommerce-message a.button:hover{background: rgba(0,0,0,0.5);}
 
 #top div.woocommerce-error{ /* background-image: url('../images/icons/error.png'); */ border-color: #941210;background-color: #F0DCDB;color: #941210; }
-#top div.woocommerce-message{/* background-image: url('../images/icons/tick.png'); */ border-color: #8BAF5B;background-color: #E0F1B5;color: #4F5F39; }
+#top div.woocommerce-message{/* background-image: url('../images/icons/tick.png'); */border-color: #8BAF5B;background-color: #E0F1B5;color: #4F5F39;}
 #top div.woocommerce-error a{color: #941210;}
 #top div.woocommerce-message a{color: #4F5F39;}
-#top .woocommerce-info {
-border-style: solid;
-border-width: 1px;
-margin: 0 0 20px 0;
-padding: 19px;
-}
+#top .woocommerce-info {border-style: solid;border-width: 1px;margin: 0 0 20px 0;padding: 19px;}
 
 mark {
 background: transparent;
@@ -1788,15 +1781,7 @@ clear: both;
 
 
 /**Woo Error Message **/
-ul.woocommerce-error {
-border:none;
-list-style:none;
-margin: 0px 0px 23px 0px;
-padding: 32px 45% 32px 36px;
-background-repeat:no-repeat;
-background-color: #F0DCDB;
-color: #941210;
-}
+ul.woocommerce-error {border:none;list-style:none;margin: 0px 0px 23px 0px;/* padding: 32px 45% 32px 36px; */background-repeat:no-repeat;background-color: #F0DCDB;color: #941210;padding: 24px 45% 24px 28px;}
 
 #top .thumbnail_container .button.single_button{
 margin-top:-15px;

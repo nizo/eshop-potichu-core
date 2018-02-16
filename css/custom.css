@@ -1183,7 +1183,9 @@ body.search .page-heading-container {
 	text-decoration: none;
 
 }
-#top.woocommerce-cart .coupon {
+
+/*
+.checkout_coupon .coupon {
 	margin-top: 20px;
 	text-align: right;
 	margin-bottom: -20px;
@@ -1209,6 +1211,25 @@ body.search .page-heading-container {
 #top.woocommerce-cart .coupon .button:hover {
 	background-color: #0061b6;
 }
+*/
+
+
+.checkout_coupon {
+	margin-top: 20px;
+}
+
+.checkout_coupon .input-text {
+	margin: 0 !important;
+	padding: 11px 0 14px 14px !important;
+	width: 120px !important;
+}
+
+.checkout_coupon .button {
+	float: none;
+	margin: 0 0 0 -5px;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
 
 #top.woocommerce-cart .cart-discount-value {
 	font-size: 13px;
@@ -1216,4 +1237,22 @@ body.search .page-heading-container {
 	margin-top: 7px;
 	text-transform: uppercase;
 	color: #0061b6;
+}
+
+
+#top.woocommerce-cart .enter-coupon-form { text-align: right; }
+
+#top.woocommerce-cart form.checkout_coupon { 
+	margin-top: 6px;
+	text-align: right;
+}
+
+
+
+.enter-coupon-form + .woocommerce-message {
+	width: 100%;
+}
+
+.enter-coupon-form + .woocommerce-error {
+	clear: both;
 }

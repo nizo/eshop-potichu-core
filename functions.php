@@ -1,5 +1,5 @@
 <?php
-define('WEB_VERSION','1.7.22'); 
+define('WEB_VERSION','1.7.23'); 
 
 global $avia_config;
 /*
@@ -532,16 +532,19 @@ function potichu_get_order_total_weight($order) {
 	}		
 	return $weight . ' kg';
 }
-function potichu_shipping_needs_palllete_delivery($cartItems) {			
+function potichu_custom_shipping_additional_costs($cartItems) {	
+	
+	$courierFixedPrice = get_option('courier_price', 0);	
+
 	foreach ( $cartItems as $item) {		
 		$productData = $item['data'];
 		$palletteNeeded = get_post_meta($productData->id, 'potrebna_paleta', true);
 		if ($palletteNeeded) {
-			return get_option('pallette_price', 0);
+			return (get_option('pallette_price', 0) + $courierFixedPrice);
 		}
 	}
 	
-	return 0;
+	return $courierFixedPrice;
 }
 
 function potichu_display_categories($input) {
@@ -1337,10 +1340,6 @@ function prof_print() {
     
 }
 
-function potichu_is_beta_version() {
-	return (get_option('beta_version') == true);
-}
-
 function potichu_web_settings_register( $wp_customize ) {
 
 	// Settings	
@@ -1348,39 +1347,27 @@ function potichu_web_settings_register( $wp_customize ) {
 		'type'		=> 'option',
 		'default'	=> 'default',
 		'transport'	=> 'refresh',
-	));
-	
-	$wp_customize->add_setting( 'feedback_form_address' , array(
-		'type'		=> 'option',
-		'default'	=> 'default',
-		'transport'	=> 'refresh',
-	));
-	
-	$wp_customize->add_setting( 'display_feedback_button' , array(
-		'type'		=> 'option',
-		'default'	=> false,
-		'transport'	=> 'refresh',
 	));	
-	
-	$wp_customize->add_setting( 'feedback_field_title' , array(
-		'type'		=> 'option',
-		'default'	=> 'default',
-		'transport'	=> 'refresh',
-	));
-	
+		
 	$wp_customize->add_setting( 'web_locale' , array(
 		'type'		=> 'option',
 		'default'	=> 'default',
 		'transport'	=> 'refresh',
 	)); 
 	
-	$wp_customize->add_setting( 'beta_version' , array(
+	$wp_customize->add_setting( 'use_new_frontpage_layout' , array(
 		'type'		=> 'option',
 		'default' 	=> false,
 		'transport'	=> 'refresh',
 	));
 
 	$wp_customize->add_setting( 'pallette_price' , array(
+		'type'		=> 'option',
+		'default'	=> 0,
+		'transport'	=> 'refresh',
+	));
+
+	$wp_customize->add_setting( 'courier_price' , array(
 		'type'		=> 'option',
 		'default'	=> 0,
 		'transport'	=> 'refresh',
@@ -1405,36 +1392,6 @@ function potichu_web_settings_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_control(
-		'display_feedback_button_control', 
-		array(
-			'label'    => 'Display feedback button ?',
-			'section'  => 'web_settings_section',
-			'settings' => 'display_feedback_button',
-			'type'     => 'checkbox'
-		)
-	);
-		
-	$wp_customize->add_control(
-		'feedback_field_title_control', 
-		array(
-			'label'    => 'Feedback field title',
-			'section'  => 'web_settings_section',
-			'settings' => 'feedback_field_title',
-			'type'     => 'text'
-		)
-	);
-			
-	$wp_customize->add_control(
-		'feedback_form_address_control', 
-		array(
-			'label'    => 'Feedback form URL',
-			'section'  => 'web_settings_section',
-			'settings' => 'feedback_form_address',
-			'type'     => 'text'			
-		)
-	);
-	
-	$wp_customize->add_control(
 		'web_locale_control', 
 		array(
 			'label'    => 'Web locale',
@@ -1451,7 +1408,7 @@ function potichu_web_settings_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'pallette_price_control', 
 		array(
-			'label'    => 'Pallette price',
+			'label'    => 'Potichu courier - price for included pallette (VAT will be applied)',
 			'section'  => 'web_settings_section',
 			'settings' => 'pallette_price',
 			'type'     => 'text'
@@ -1459,11 +1416,21 @@ function potichu_web_settings_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_control(
-		'beta_version_control', 
+		'courier_price_control', 
 		array(
-			'label'    => 'Beta version',
+			'label'    => 'Potichu courier - fixed costs per order (VAT will be applied)',
 			'section'  => 'web_settings_section',
-			'settings' => 'beta_version',
+			'settings' => 'courier_price',
+			'type'     => 'text'
+		)
+	);	
+
+	$wp_customize->add_control(
+		'use_new_frontpage_layout_control', 
+		array(
+			'label'    => 'Use new frontpage layout',
+			'section'  => 'web_settings_section',
+			'settings' => 'use_new_frontpage_layout',
 			'type'     => 'checkbox'
 		)
 	);
@@ -1582,11 +1549,38 @@ add_action('wp_logout', 'redirect_after_logout');
 
 
 function loop_columns() {
-	if (is_front_page() && potichu_is_beta_version())
+	if (is_front_page() && get_option('use_new_frontpage_layout', false))
 		return 4;
 	
 	return 3;
 }
 add_filter('loop_shop_columns', 'loop_columns');
+
+function potichu_hide_courier_shipping_when_free_is_available( $available_methods ) {
+    if (isset( $available_methods['free_shipping'] ) && (isset( $available_methods['flat_rate_reg'] ))) {
+        
+        unset( $available_methods['flat_rate_reg'] );
+    }
+
+    return $available_methods;
+}
+add_filter( 'woocommerce_available_shipping_methods', 'potichu_hide_courier_shipping_when_free_is_available' , 10, 1 );
+
+
+function wc_add_notice_free_shipping() {
+	$free_shipping_settings = get_option('woocommerce_free_shipping_settings');
+	
+	$amount_for_free_shipping = $free_shipping_settings['min_amount'];
+	$cart = WC()->cart->subtotal;
+	$remaining = $amount_for_free_shipping - $cart;
+	if( $amount_for_free_shipping > $cart ){
+		//$notice = sprintf( "", );
+		$notice = sprintf( esc_html__( 'Add %s worth more products to get free shipping.', 'woocommerce' ), wc_price($remaining) );
+		wc_print_notice( $notice , 'success' );
+	}	
+}
+add_action( 'woocommerce_before_checkout_form', 'wc_add_notice_free_shipping');
+add_action( 'woocommerce_before_cart', 'wc_add_notice_free_shipping');
+
 ?>
 

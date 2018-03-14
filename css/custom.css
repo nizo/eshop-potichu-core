@@ -1260,12 +1260,14 @@ body.search .page-heading-container {
 	text-align: right;
 }
 
-
-
 .enter-coupon-form + .woocommerce-message {
 	width: 100%;
 }
 
 .enter-coupon-form + .woocommerce-error {
 	clear: both;
+}
+
+.payment_method_besteron .form-row > div:first-child {
+    display: none;
 }

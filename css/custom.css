@@ -1271,3 +1271,21 @@ body.search .page-heading-container {
 .payment_method_besteron .form-row > div:first-child {
     display: none;
 }
+
+.catapult-cookie-bar {
+	box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.4);
+}
+
+.catapult-cookie-bar .ctcc-inner {
+	text-align: center;
+    padding-top: 12px;
+	padding-bottom: 12px;	
+}
+.catapult-cookie-bar .ctcc-inner button {
+	padding: 10px 14px;
+}
+
+.catapult-cookie-bar a {
+	text-decoration: underline;
+	margin-right: 24px;	
+}

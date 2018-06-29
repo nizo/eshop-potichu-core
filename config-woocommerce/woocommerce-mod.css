@@ -387,9 +387,7 @@ text-decoration: none;
 
 #top .price, #top .price span, #top del, #top  ins{display: inline;text-decoration: none;font-size: 15px;line-height: 24px;font-weight: 600;vertical-align: top;}
 
-#top .price, div .stock{
-color: #7E9A47;
-}
+#top .price, div .stock{color: #7E9A47;}
 
 #top .price .from{
 font-weight: normal;
@@ -1032,11 +1030,7 @@ padding: 6px 12px;
 vertical-align: middle;
 }
 
-#top table.shop_table .actions .button{
-min-width:182px;
-width:182px;
-margin:3px 0 3px 7px;
-}
+#top table.shop_table .actions .button{min-width:182px;width:182px;margin:3px 0 3px 7px;}
 
 td.actions .coupon{
 width:410px;

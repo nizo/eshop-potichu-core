@@ -754,11 +754,7 @@ font-size: 15px;
 font-weight: normal;
 }
 
-.template-shop .images a{
-display: block;
-position: relative;
-padding: 5px;
-}
+.template-shop .images a{display: block;position: relative;padding: 2px;}
 
 #top .template-shop .images a img{
 display: block;
@@ -798,11 +794,7 @@ top:8px;
 
 /*single sidebar*/
 
-#top .product div.images img {
-display: block;
-width: 100%;
-height: auto;
-}
+#top .product div.images img {display: block;/* width: 100%; *//* height: auto; */}
 
 
 #top .variations_form, #top div.product .woocommerce-tabs .panel{

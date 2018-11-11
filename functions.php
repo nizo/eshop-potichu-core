@@ -1,5 +1,5 @@
 <?php
-define('WEB_VERSION','1.8.5'); 
+define('WEB_VERSION','1.8.7'); 
 
 global $avia_config;
 /*
@@ -1569,13 +1569,16 @@ add_filter( 'woocommerce_available_shipping_methods', 'potichu_hide_courier_ship
 
 function wc_add_notice_free_shipping() {
 	$free_shipping_settings = get_option('woocommerce_free_shipping_settings');
+	//var_dump($free_shipping_settings);
+	//echo $free_shipping_settings['enabled'];
+	if ($free_shipping_settings['enabled'] == "no") return;
 	
 	$amount_for_free_shipping = $free_shipping_settings['min_amount'];
 	$cart = WC()->cart->subtotal;
 	$remaining = $amount_for_free_shipping - $cart;
 	if( $amount_for_free_shipping > $cart ){
 		//$notice = sprintf( "", );
-		$notice = sprintf( esc_html__( 'Add %s worth more products to get free shipping.', 'woocommerce' ), wc_price($remaining) );
+		$notice = sprintf( esc_html__( 'Nakúpte ešte za %s a tovar Vám doručíme zadarmo.', 'woocommerce' ), wc_price($remaining) );
 		wc_print_notice( $notice , 'success' );
 	}	
 }

@@ -1558,7 +1558,6 @@ add_filter('loop_shop_columns', 'loop_columns');
 
 function potichu_hide_courier_shipping_when_free_is_available( $available_methods ) {
     if (isset( $available_methods['free_shipping'] ) && (isset( $available_methods['flat_rate_reg'] ))) {
-        
         unset( $available_methods['flat_rate_reg'] );
     }
 
@@ -1569,18 +1568,17 @@ add_filter( 'woocommerce_available_shipping_methods', 'potichu_hide_courier_ship
 
 function wc_add_notice_free_shipping() {
 	$free_shipping_settings = get_option('woocommerce_free_shipping_settings');
-	//var_dump($free_shipping_settings);
-	//echo $free_shipping_settings['enabled'];
 	if ($free_shipping_settings['enabled'] == "no") return;
-	
+
 	$amount_for_free_shipping = $free_shipping_settings['min_amount'];
 	$cart = WC()->cart->subtotal;
 	$remaining = $amount_for_free_shipping - $cart;
-	if( $amount_for_free_shipping > $cart ){
-		//$notice = sprintf( "", );
+	if( $amount_for_free_shipping > $cart ){		
 		$notice = sprintf( esc_html__( 'Nakúpte ešte za %s a tovar Vám doručíme zadarmo.', 'woocommerce' ), wc_price($remaining) );
-		wc_print_notice( $notice , 'success' );
-	}	
+	} else {
+    	$notice = sprintf( esc_html__( 'Gratulujeme, v košíku máte tovar nad %s, získavate doručenie kuriérom zdarma.', 'woocommerce' ), wc_price($amount_for_free_shipping) );
+  	}
+  wc_print_notice( $notice , 'success' );
 }
 add_action( 'woocommerce_before_checkout_form', 'wc_add_notice_free_shipping');
 add_action( 'woocommerce_before_cart', 'wc_add_notice_free_shipping');

@@ -769,10 +769,9 @@ padding:0;
 
 
 .template-shop div.product div.images{
-	width:50%;
-	/*float: none;*/
+	width: 50%;
 	margin:0;
-	margin-right:25px;
+	margin-right: 20px;
 	padding-bottom: 50px;
 }
 

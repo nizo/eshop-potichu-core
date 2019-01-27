@@ -1585,7 +1585,7 @@ add_action( 'woocommerce_before_checkout_form', 'wc_add_notice_free_shipping');
 add_action( 'woocommerce_before_cart', 'wc_add_notice_free_shipping');
 
 /* PIPEDRIVE SECTION START */
-add_action( 'woocommerce_thankyou', 'potichu_submit_job_to_pipedrive', 10, 1 ); 
+add_action( 'woocommerce_thankyou', 'potichu_submit_job_to_pipedrive', 10, 1 );
 function potichu_submit_job_to_pipedrive($order_id) {
 
 	if (get_option('web_locale') != "sk") return;
@@ -1626,13 +1626,11 @@ function potichu_submit_job_to_pipedrive($order_id) {
 
 	// if the person was added successfully add the deal and link it to the organization and the person
 	if ($person_id) {
-		echo "Person added successfully!";
 		$deal['person_id'] = $person_id;
 		// try adding a person and get back the ID
 		$deal_id = create_deal($api_token, $deal);
 
 		if ($deal_id) {
-			echo "<br/>Deal added successfully!";
 		}
 
 		$activity = array(
@@ -1647,12 +1645,11 @@ function potichu_submit_job_to_pipedrive($order_id) {
 		// try setting activity to a deal
 		$activity_id = add_activity($api_token, $activity);
 		if ($activity_id) {
-			echo "<br/>Activity added successfully!";
 		}
 
 
 	} else {
-		echo "There was a problem with adding the person!";
+
 	}
 }
 
@@ -1669,10 +1666,8 @@ function create_person($api_token, $person) {
 	$info = curl_getinfo($ch);
 	curl_close($ch);
 
-	var_dump($output);
 	// create an array from the data that is sent back from the API
 	$result = json_decode($output, 1);
-	var_dump($result);
 	// check if an id came back
 	if (!empty($result['data']['id'])) {
 	$person_id = $result['data']['id'];

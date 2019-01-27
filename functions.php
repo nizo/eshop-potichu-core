@@ -1535,6 +1535,7 @@ function remove_update_notifications( $value ) {
     if ( isset( $value ) && is_object( $value ) ) {
         unset( $value->response[ 'woocommerce-pay-for-payment/woocommerce-payforpayment.php' ] );
 		unset( $value->response[ 'woocommerce/woocommerce.php' ] );
+		unset( $value->response[ 'woocommerce-google-analytics-integration/woocommerce-google-analytics-integration.php' ] );
     }
 
     return $value;
@@ -1582,6 +1583,155 @@ function wc_add_notice_free_shipping() {
 }
 add_action( 'woocommerce_before_checkout_form', 'wc_add_notice_free_shipping');
 add_action( 'woocommerce_before_cart', 'wc_add_notice_free_shipping');
+
+/* PIPEDRIVE SECTION START */
+add_action( 'woocommerce_thankyou', 'potichu_submit_job_to_pipedrive', 10, 1 ); 
+function potichu_submit_job_to_pipedrive($order_id) {
+
+	if (get_option('web_locale') != "sk") return;
+
+	$order = new WC_Order( $order_id );
+
+	if (!$order) return;
+
+	$name = $order->billing_first_name . ' ' . $order->billing_last_name;
+	$email = $order->billing_email;
+	$phone = $order->billing_phone;
+	$city = $order->billing_city;
+
+	$note = 'Platobná metóda: ' . $order->payment_method_title . PHP_EOL .
+			'Adresa: ' . $order->get_billing_address();
+
+	$api_token = '4fae12d61eae55ca09ad67d09202559d01349afd';
+
+	$handlerId = 2479848;
+
+	// main data about the person. org_id is added later dynamically
+	$person = array(
+        'name' => $name,
+        'email' => $email,
+        'phone' => $phone,
+        'd939ca8cc6a11101553489d9bd2c9fc84c2930ec' => $city
+	);
+
+	// main data about the deal. person_id and org_id is added later dynamically
+	$deal = array(
+		'title' => $name . ' - Eshop',
+		'value' => $order->get_total(),
+        'user_id' => $handlerId
+	);
+
+	// try adding a person and get back the ID
+	$person_id = create_person($api_token, $person);
+
+	// if the person was added successfully add the deal and link it to the organization and the person
+	if ($person_id) {
+		echo "Person added successfully!";
+		$deal['person_id'] = $person_id;
+		// try adding a person and get back the ID
+		$deal_id = create_deal($api_token, $deal);
+
+		if ($deal_id) {
+			echo "<br/>Deal added successfully!";
+		}
+
+		$activity = array(
+			'subject' => 'Objednávka z E-shopu',
+			'type' => 'task',
+			'due_date' => date("Y-m-d"),
+			'deal_id' => $deal_id,
+			'user_id' => $handlerId,
+			'note' =>  $note
+		);
+
+		// try setting activity to a deal
+		$activity_id = add_activity($api_token, $activity);
+		if ($activity_id) {
+			echo "<br/>Activity added successfully!";
+		}
+
+
+	} else {
+		echo "There was a problem with adding the person!";
+	}
+}
+
+function create_person($api_token, $person) {
+	$url = "https://api.pipedrive.com/v1/persons?api_token=" . $api_token;
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_POST, true);
+
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $person);
+	$output = curl_exec($ch);
+	$info = curl_getinfo($ch);
+	curl_close($ch);
+
+	var_dump($output);
+	// create an array from the data that is sent back from the API
+	$result = json_decode($output, 1);
+	var_dump($result);
+	// check if an id came back
+	if (!empty($result['data']['id'])) {
+	$person_id = $result['data']['id'];
+		return $person_id;
+		} else {
+		return false;
+	}
+}
+
+function create_deal($api_token, $deal) {
+	$url = "https://api.pipedrive.com/v1/deals?api_token=" . $api_token;
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_POST, true);
+
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $deal);
+	$output = curl_exec($ch);
+	$info = curl_getinfo($ch);
+	curl_close($ch);
+
+	// create an array from the data that is sent back from the API
+	$result = json_decode($output, 1);
+	// check if an id came back
+	if (!empty($result['data']['id'])) {
+		$deal_id = $result['data']['id'];
+		return $deal_id;
+		} else {
+		return false;
+	}
+}
+
+function add_activity($api_token, $activity) {
+	$url = "https://api.pipedrive.com/v1/activities?api_token=" . $api_token;
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_POST, true);
+
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $activity);
+	$output = curl_exec($ch);
+	$info = curl_getinfo($ch);
+	curl_close($ch);
+
+	// create an array from the data that is sent back from the API
+	$result = json_decode($output, 1);
+	// check if an id came back
+	if (!empty($result['data']['id'])) {
+		$activity_id = $result['data']['id'];
+		return $activity_id;
+		} else {
+		return false;
+	}
+}
+
+/* PIPEDRIVE SECTION END */
+
 
 ?>
 

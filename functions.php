@@ -1616,8 +1616,9 @@ function potichu_submit_job_to_pipedrive($order_id) {
 
 	// main data about the deal. person_id and org_id is added later dynamically
 	$deal = array(
-		'title' => $name . ' - Eshop',
+		'title' => 'Eshop - ' . $order_id,
 		'value' => $order->get_total(),
+		'stage_id' => 25,
         'user_id' => $handlerId
 	);
 
@@ -1729,4 +1730,3 @@ function add_activity($api_token, $activity) {
 
 
 ?>
-

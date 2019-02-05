@@ -1585,19 +1585,21 @@ add_action( 'woocommerce_before_checkout_form', 'wc_add_notice_free_shipping');
 add_action( 'woocommerce_before_cart', 'wc_add_notice_free_shipping');
 
 /* PIPEDRIVE SECTION START */
-add_action( 'woocommerce_thankyou', 'potichu_submit_job_to_pipedrive', 10, 1 );
+add_action( 'woocommerce_thankyou', 'potichu_submit_job_to_pipedrive');
 function potichu_submit_job_to_pipedrive($order_id) {
 
 	if (get_option('web_locale') != "sk") return;
 
 	$order = new WC_Order( $order_id );
+	$orderInPipedrive = get_post_meta( $order_id, 'order_in_pipedrive', true );
 
-	if (!$order) return;
+	if (!$order || $orderInPipedrive) return;
 
 	$name = $order->billing_first_name . ' ' . $order->billing_last_name;
 	$email = $order->billing_email;
 	$phone = $order->billing_phone;
 	$city = $order->billing_city;
+	//$suffix = $order->get_status() == 'failed' ? ' - FAILED' : '';
 
 	$note = 'Platobná metóda: ' . $order->payment_method_title . PHP_EOL .
 			'Adresa: ' . $order->get_billing_address();
@@ -1652,6 +1654,8 @@ function potichu_submit_job_to_pipedrive($order_id) {
 	} else {
 
 	}
+
+	$orderInPipedrive = update_post_meta( $order_id, 'order_in_pipedrive', true );
 }
 
 function create_person($api_token, $person) {

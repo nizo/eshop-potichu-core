@@ -1088,6 +1088,7 @@ function potichu_compute_unit_price($id, $originalPrice) {
 	if (!$unitCoeficient || $unitCoeficient == '') return 0;
 
 	$originalPrice =  str_replace(',', '.', $originalPrice);
+	$unitCoeficient =  str_replace(',', '.', $unitCoeficient);
 	return price_add_trailing_zeros($originalPrice * $unitCoeficient);
 }
 

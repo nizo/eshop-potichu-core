@@ -1083,6 +1083,14 @@ function potichu_get_unit_price($id) {
 	return price_add_trailing_zeros($unitPrice);
 }
 
+function potichu_compute_unit_price($id, $originalPrice) {
+	$unitCoeficient = get_post_meta($id, 'Jednotkova hodnota', true);
+	if (!$unitCoeficient || $unitCoeficient == '') return 0;
+
+	$originalPrice =  str_replace(',', '.', $originalPrice);
+	return price_add_trailing_zeros($originalPrice * $unitCoeficient);
+}
+
 function potichu_get_measuring_unit($id) {
 	$measuringUnit = get_post_meta($id, 'jednotka',true);
 

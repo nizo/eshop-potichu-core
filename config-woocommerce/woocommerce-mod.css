@@ -10,7 +10,7 @@ small.note{display:block;font-size:11px;line-height:21px;margin-top:10px;}
 div.product{position:relative;margin-bottom:0;}
 div.product .product_title{clear:none; font-weight: 100; }
 
-.single-product .product-title { max-width: calc(100% - 90px); }
+.single-product .product_title { max-width: calc(100% - 90px); }
 div.product p.price{color:#7E9A47;font-size:1.3em;}div.product p.price del{font-size:14px; color:#8B2121;}
 div.product p.stock{font-size:0.92em;padding:2px 0 0 0;}
 div.product div.images{float:left;width:47%;}div.product div.images img{padding:6px;display:block;width:100%;height:auto;}

@@ -2126,13 +2126,13 @@ background: rgba(0, 0, 0, 0);
 			.responsive div .widget_price_filter .price_slider_wrapper .price_label{ clear:both; float:none; }
 			.html_header_sidebar .cart_dropdown .dropdown_widget{width:200px;}
 			.responsive .added_to_cart_notification{width:200px;}
-			
+
 			.responsive .av_mobile_menu_tablet .cart_dropdown { position: absolute; top: 50%; margin: -23px 0px 0 0;}
 
 	}
 
-	
-	
+
+
 	@media only screen and (max-width: 1100px) {
 		.responsive #top .related.products .product, .responsive #top .upsells.products .product {
 			margin: 0 4% 0 0;
@@ -2147,9 +2147,9 @@ background: rgba(0, 0, 0, 0);
 			margin: 0 1% 1% 0;
 			width: 49%;
 		}
-		
+
 		responsive .single-product-main-image{width:100%; margin:0 30px 0 0;}
-			
+
 		.responsive #top .products .product:nth-child(odd){
 		clear:both;
 		}
@@ -2187,14 +2187,14 @@ background: rgba(0, 0, 0, 0);
 			float:none;
 			margin-bottom:20px;
 		}
-		
+
 		#checkout-step-1 .col-1,
 		#checkout-step-2 .col-1,
 		#checkout-step-1 .col-2,
 		#checkout-step-2 .col-2 		{
 			width: 100% !important;
 		}
-			
+
 
 		.responsive #top .woocommerce-ordering{
 			position: absolute;
@@ -2222,11 +2222,11 @@ background: rgba(0, 0, 0, 0);
             display: none;
 		}
 		*/
-		
+
 		.responsive  #top .single-product-main-image .onsale { top: 7px; right: 7px; }
 
 		/*header*/
-				
+
 		.responsive #top .cart_dropdown.visible_cart {
 			/* position: fixed; */
 			/* bottom: 20px; */
@@ -2237,8 +2237,8 @@ background: rgba(0, 0, 0, 0);
 			/* width: 90px; */
 			/* border: none; */
 			/* height: 47px; */
-		}		
-		
+		}
+
 		.cart_dropdown_link .avia_hidden_link_text {
 			display: block !important;
 			text-transform: uppercase;
@@ -2248,7 +2248,7 @@ background: rgba(0, 0, 0, 0);
 			line-height: 15px;
 			padding: 9px 0;
 		}
-		
+
 		.woocommerce-checkout .cart_dropdown,
 		.cart_dropdown.visible_cart span[data-av_icon],
 		.woocommerce-cart .cart_dropdown,
@@ -2258,11 +2258,11 @@ background: rgba(0, 0, 0, 0);
 	}
 	/* All Mobile Sizes (devices and browser) */
 	@media only screen and (max-width: 900px) {
-		
+
 		.
 		.responsive .single-product-main-image .sidebar{display:none;}
 		.responsive #top table .product-name { border-left-style: solid; border-left-width: 1px; }
-		
+
 		.responsive .single-product-main-image{padding-bottom:20px; }
 		.responsive .single-product-summary{clear: both; }
 
@@ -2270,7 +2270,18 @@ background: rgba(0, 0, 0, 0);
 
 	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 	@media only screen and (max-width: 479px) {
-		
+
+		.single-product .product_title  {
+			max-width: 100%;
+			margin-top: 32px;
+		}
+
+		.single-product-summary .sale-label {
+			right: auto;
+			left: 0;
+			top: 0;
+		}
+
 		.responsive #top #main .products .product {
 			margin: 0 0 20px 0;
 			width: 100%;

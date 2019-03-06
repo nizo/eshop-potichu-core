@@ -1,5 +1,5 @@
 <?php
-define('WEB_VERSION','1.8.12');
+define('WEB_VERSION','1.8.13');
 
 global $avia_config;
 /*

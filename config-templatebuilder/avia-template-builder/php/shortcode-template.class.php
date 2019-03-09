@@ -134,12 +134,12 @@ if ( !class_exists( 'aviaShortcodeTemplate' ) ) {
 		{
 
 			if(empty($this->elements)) die();
-			
+
 			if(current_theme_supports('avia_template_builder_custom_css'))
 			{
 				$this->elements = $this->avia_custom_class_for_element($this->elements);
 			}
-			
+
 			$elements = apply_filters('avf_template_builder_shortcode_elements', $this->elements);
 
 			//if the ajax request told us that we are fetching the subfunction iterate over the array elements and
@@ -154,7 +154,7 @@ if ( !class_exists( 'aviaShortcodeTemplate' ) ) {
 					}
 				}
 			}
-			
+
 
 			$elements = $this->set_default_values($elements);
 			echo AviaHtmlHelper::render_multiple_elements($elements, $this);
@@ -168,7 +168,7 @@ if ( !class_exists( 'aviaShortcodeTemplate' ) ) {
 		public function shortcode_handler_prepare($atts, $content = "", $shortcodename = "", $fake = false)
 		{
 			//dont use any shortcodes in backend
-		
+
 			$meta = array();
 
 			if(empty($this->config['inline'])) //inline shortcodes like dropcaps are basically nested shortcodes and should therefore not be counted
@@ -188,7 +188,7 @@ if ( !class_exists( 'aviaShortcodeTemplate' ) ) {
 				{
 					$meta['el_class'] .= " el_after_".$meta['siblings']['prev']['tag']." ";
 				}
-				
+
 				if(!empty($meta['siblings']['next']['tag']))
 				{
 					$meta['el_class'] .= " el_before_".$meta['siblings']['next']['tag']." ";
@@ -232,20 +232,20 @@ if ( !class_exists( 'aviaShortcodeTemplate' ) ) {
 					$fake = true;
 					$meta = array('el_class'=>'');
 				}
-				
+
 	            //fake is set when we manually call one shortcode inside another
 	            if(!$fake) ShortcodeHelper::$shortcode_index ++;
     		}
-			
-			if(isset($atts['custom_class'])) 
+
+			if(isset($atts['custom_class']))
 			{
 				$meta['el_class'] .= " ". $atts['custom_class'];
 				$meta['custom_class'] = $atts['custom_class'];
 			}
-			
+
 			if(!isset($meta['custom_markup'])) $meta['custom_markup'] = "";
-			
-			
+
+
 			$meta = apply_filters('avf_template_builder_shortcode_meta', $meta, $atts, $content, $shortcodename);
 
             $content = $this->shortcode_handler($atts, $content, $shortcodename, $meta);
@@ -297,7 +297,7 @@ if ( !class_exists( 'aviaShortcodeTemplate' ) ) {
 			if(!is_admin())
 			{
 				add_shortcode( $this->config['shortcode'], array(&$this, 'shortcode_handler_prepare'));
-	
+
 				if(!empty($this->config['shortcode_nested']))
 				{
 					foreach($this->config['shortcode_nested'] as $nested)
@@ -320,7 +320,7 @@ if ( !class_exists( 'aviaShortcodeTemplate' ) ) {
 			{
 				switch($element['type'])
 				{
-				
+
 					case "multi_input": 	$this->config['modal_on_load'][] = 'modal_load_multi_input'; break;
 					case "tab_container": 	$this->config['modal_on_load'][] = 'modal_load_tabs'; break;
 					case "tiny_mce": 		$this->config['modal_on_load'][] = 'modal_load_tiny_mce'; break;
@@ -437,19 +437,19 @@ if ( !class_exists( 'aviaShortcodeTemplate' ) ) {
 
 			return $output;
 		}
-		
+
 		/**
 		* add a custom css class to each element
 		*/
 		public function avia_custom_class_for_element($elements)
 		{
-			$elements[] = array(	
+			$elements[] = array(
 				"name" 	=> __("Custom Css Class",'avia_framework' ),
 				"desc" 	=> __("Add a custom css class for the element here. Make sure to only use allowed characters (latin characters, underscores, dashes and numbers)",'avia_framework' ),
 				"id" 	=> "custom_class",
 				"type" 	=> "input",
 				"std" 	=> "");
-		
+
 			return $elements;
 		}
 
@@ -465,6 +465,7 @@ if ( !class_exists( 'aviaShortcodeTemplate' ) ) {
 			$params = array_merge($defaults, $params);
 			extract($params);
 
+			$data = [];
 			$data['shortcodehandler'] 	= $this->config['shortcode'];
 			$data['modal_title'] 		= $this->config['name'];
 			$data['modal_ajax_hook'] 	= $this->config['shortcode'];
@@ -517,8 +518,8 @@ if ( !class_exists( 'aviaShortcodeTemplate' ) ) {
 		public function set_default_values($elements)
 		{
 			$shortcode = !empty($_POST['params']['shortcode']) ? $_POST['params']['shortcode'] : "";
-			
-			
+
+
 
 			if($shortcode)
 			{
@@ -544,7 +545,7 @@ if ( !class_exists( 'aviaShortcodeTemplate' ) ) {
 						{
 							//make sure that each element of the popup can access the other values of the shortcode. necessary for hidden elements
 							$element['shortcode_data'] = $extracted_shortcode['attr'];
-						
+
 							//if the item has subelements the std value has to be an array
 							if(isset($element['subelements']))
 							{

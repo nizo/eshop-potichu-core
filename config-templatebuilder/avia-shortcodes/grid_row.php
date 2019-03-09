@@ -46,30 +46,31 @@ if ( !class_exists( 'avia_sc_grid_row' ) )
 
 			function editor_element($params)
 			{
-				
+
 				/*
 				$params['content'] = trim($params['content']);
 				if(empty($params['content'])) $params['content'] = "[av_cell_one_half first][/av_cell_one_half] [av_cell_one_half][/av_cell_one_half]";
 */
 
-			
+
 				extract($params);
-				
+
 				$name = $this->config['shortcode'];
+				$data = [];
 				$data['shortcodehandler'] 	= $this->config['shortcode'];
-    			$data['modal_title'] 		= $this->config['name'];
-    			$data['modal_ajax_hook'] 	= $this->config['shortcode'];
+   			$data['modal_title'] 		= $this->config['name'];
+   			$data['modal_ajax_hook'] 	= $this->config['shortcode'];
 				$data['dragdrop-level'] 	= $this->config['drag-level'];
 				$data['allowed-shortcodes']	= $this->config['shortcode'];
-				
+
 				if(!empty($this->config['modal_on_load']))
     			{
     				$data['modal_on_load'] 	= $this->config['modal_on_load'];
     			}
 
     			$dataString  = AviaHelper::create_data_string($data);
-				
-				
+
+
 				if($content)
 				{
 					$final_content = $this->builder->do_shortcode_backend($content);
@@ -83,7 +84,7 @@ if ( !class_exists( 'avia_sc_grid_row' ) )
 					$final_content .= $cell->editor_element($params);
 					$final_content .= $cell->editor_element($params);
 					$text_area = ShortcodeHelper::create_shortcode_by_array($name, '[av_cell_one_half first][/av_cell_one_half] [av_cell_one_half][/av_cell_one_half]', $args);
-				
+
 				}
 
 
@@ -122,7 +123,7 @@ if ( !class_exists( 'avia_sc_grid_row' ) )
 			    global  $avia_config;
 
 				$this->elements = array(
-					
+
 					array(
 						"name" 	=> __("Grid Borders",'avia_framework' ),
 						"id" 	=> "border",
@@ -135,16 +136,16 @@ if ( !class_exists( 'avia_sc_grid_row' ) )
 									__('Borders on top and bottom and between cells' , 'avia_framework' ) =>'av-border-top-bottom av-border-cells',
 									)
 				    ),
-				    
-				    array(	
+
+				    array(
 							"name" 	=> __("Minimum height", 'avia_framework' ),
 							"desc" 	=> __("Set the minimum height of all the cells in pixel. eg:400px", 'avia_framework' ),
 							"id" 	=> "min_height",
 							"type" 	=> "input",
 							"std" 	=> "0",
 						),
-				    
-					
+
+
 			        array(
 						"name" 	=> __("Section Colors",'avia_framework' ),
 						"id" 	=> "color",
@@ -154,8 +155,8 @@ if ( !class_exists( 'avia_sc_grid_row' ) )
 						"std" 	=> "main_color",
 						"subtype" =>  array_flip($avia_config['color_sets'])
 				    ),
-				    
-				    
+
+
 				    array(
 						"name" 	=> __("Mobile Behaviour",'avia_framework' ),
 						"id" 	=> "mobile",
@@ -166,14 +167,14 @@ if ( !class_exists( 'avia_sc_grid_row' ) )
 											__('Cells appear beside each other, just like on large screens' , 'avia_framework' ) =>'av-fixed-cells',
 									)
 				    ),
-				    
+
 				    array(	"name" 	=> __("For Developers: Section ID", 'avia_framework' ),
 							"desc" 	=> __("Apply a custom ID Attribute to the section, so you can apply a unique style via CSS. This option is also helpful if you want to use anchor links to scroll to a sections when a link is clicked", 'avia_framework' )."<br/><br/>".
 									   __("Use with caution and make sure to only use allowed characters. No special characters can be used.", 'avia_framework' ),
 				            "id" 	=> "id",
 				            "type" 	=> "input",
 				            "std" => ""),
-				    
+
                 );
 			}
 
@@ -194,26 +195,26 @@ if ( !class_exists( 'avia_sc_grid_row' ) )
 				'min_height'	=> '0',
 				'mobile'		=> 'av-flex-cells',
 				'id'			=> ''
-				
+
 				), $atts, $this->config['shortcode']);
-				
+
 				extract($atts);
 				$output  	= "";
-				
-				
+
+
 				$params['class'] = "av-layout-grid-container {$color} {$mobile} {$border}".$meta['el_class'];
-				$params['open_structure'] = false; 
+				$params['open_structure'] = false;
 				$params['id'] = !empty($id) ? $id : "av-layout-grid-".avia_sc_grid_row::$count;
 				$params['custom_markup'] = $meta['custom_markup'];
-				
+
 				//we dont need a closing structure if the element is the first one or if a previous fullwidth element was displayed before
 				if(isset($meta['index']) && $meta['index'] == 0) $params['close'] = false;
 				if(!empty($meta['siblings']['prev']['tag']) && in_array($meta['siblings']['prev']['tag'], AviaBuilder::$full_el_no_section )) $params['close'] = false;
-				
+
 				if(isset($meta['index']) && $meta['index'] != 0) $params['class'] .= " submenu-not-first";
-				
-				
-				
+
+
+
 				avia_sc_cell::$attr = $atts;
 				$output .=  avia_new_section($params);
 				$output .=  ShortcodeHelper::avia_remove_autop($content,true) ;

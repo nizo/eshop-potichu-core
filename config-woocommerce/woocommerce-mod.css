@@ -61,8 +61,7 @@ border-bottom-width: 1px;
 }
 
 
-.woocommerce-page .button{min-width: 100px;padding:15px;line-height:1em;margin: 4px 12px 0 0;float:left;font-size:12px;width:auto;vertical-align:middle;text-align:center;text-decoration:none;border:none;cursor:pointer;font-family:inherit;border-radius:2px;}
-.button.alt:hover{}
+.woocommerce-page .button{ padding:15px;line-height:1em;margin: 4px 12px 0 0;float:left;font-size:12px;width:auto;vertical-align:middle;text-align:center;text-decoration:none;border:none;cursor:pointer;font-family:inherit;border-radius:2px;}
 #reviews h2 small{float:right;font-size:15px;line-height:21px;margin:10px 0 0 0;}#reviews h2 small a{text-decoration:none;}
 #reviews h3{margin:0;}
 #reviews #respond{margin:0;border:0;padding:0;}
@@ -400,11 +399,13 @@ padding-right:2px;
 color:#7E9A47;
 }
 
+/*
 #top #wrap_all del{
 text-decoration: line-through;
 font-weight: normal;
 color: #8B2121;
 }
+*/
 
 #top #wrap_all ins:before {
 	content: "\2219"; /*bullet*/
@@ -578,7 +579,10 @@ border-top-width:1px;
 min-height: 91px;
 }
 
-.inner_product_header .avia-arrow{border-bottom: none; border-right: none; z-index: 1000; top:-5px; margin-left: -6px;}
+.inner_product_header .avia-arrow{
+	display: none;
+	border-bottom: none; border-right: none; z-index: 1000; top:-5px; margin-left: -6px;
+}
 
 
 #top .product_on_sale .inner_product_header{
@@ -1326,8 +1330,9 @@ border-radius: 2px;
 }
 
 #top .actions .button[name="update_cart"] {
-float: right;
-margin-right: 0;
+	display: none;
+	float: right;
+	margin-right: 0;
 }
 
 #top .actions .checkout-button.button.alt{

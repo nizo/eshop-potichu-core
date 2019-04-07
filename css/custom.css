@@ -82,7 +82,7 @@ h3, h4 {
 }
 #top .front-page-price-info .price .vat {
 	color: #0061b6 !important;
-	font-size: 28px !important;
+	font-size: 24px !important;
 	display: block;
 	margin-top: 8px;
 	font-weight: normal;
@@ -97,15 +97,28 @@ h3, h4 {
 }
 
 #top .price del {
-	font-size: 14px !important;
-    margin-right: 7px;
-	opacity: 0.5;
+	margin-left: 8px;
+	margin-right: 10px;
+	position: relative;
 	vertical-align: baseline;
 }
 
 #top .front-page-price-info del {
-	font-size: 16px !important;
-	vertical-align: baseline;
+	font-size: 12px !important;
+	
+}
+
+#top del:after {
+	content: "";
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    margin-left: -40%;
+    top: 50%;
+    width: 80%;
+    height: 1px;
+    transform: rotate(-20deg);
+    background: #000;
 }
 
 
@@ -177,8 +190,6 @@ thead tr:first-child th {
 #top .actions .checkout-button.button.wc-forward
 {
 	float: right !important;
-	/* background-color: rgb(226, 80, 80); */
-	/* border-color: #ab4a4a !important; */
 }
 
 #top #payment #place_order:focus,
@@ -720,18 +731,18 @@ div .products .inner_product_header a {
     z-index: 2;
     left: -4px;
     top: -3px;
-    font-weight: 800;
+    font-weight: 500;
     transform: rotate(-3deg);
     border-radius: 2px;
 }
 
 .single-product-summary .sale-label {
-    transform: rotate(0deg);
+    transform: rotate(-1deg);
     right: 0;
     left: auto;
     top: 20px;
-    background-color: #fff3e0;
-    color: #EF6C00;
+    color: #fff3e0;
+    background-color: #ffa726;
 }
 
 /*
@@ -1348,19 +1359,22 @@ body.search .page-heading-container {
 
 .single_add_to_cart_button,
 .checkout-button.wc-forward,
-.woocommerce-checkout #place_order {
-	background-color: #f39d20 !important;
-	text-transform: uppercase !important;
-	font-size: 14px !important;
-	padding: 15px !important;
-	letter-spacing: 1px !important;
-	border: none !important;
+.woocommerce-checkout #place_order,
+.checkout-next-step-button {
+	background-color: #7CB342 !important;
+    font-size: 14px !important;
+	padding: 14px 14px 13px 14px !important;
+    letter-spacing: 1px !important;
+    border: 1px solid #689F38!important;
+    font-weight: bold;
+    min-width: 100px;
 }
 
 .single_add_to_cart_button:hover,
 .checkout-button.wc-forward:hover,
-.woocommerce-checkout #place_order:hover {
-	background-color: #f9b047 !important;
+.woocommerce-checkout #place_order:hover,
+.checkout-next-step-button:hover {
+	background-color: #689F38 !important;
 
 }
 

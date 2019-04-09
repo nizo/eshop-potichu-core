@@ -272,10 +272,10 @@ if(!function_exists('avia_register_frontend_scripts'))
 
 		//register styles
 		if ($suffix == '') {
-			wp_enqueue_style( 'avia-custom',  $template_url."/css/custom.css", array(), 	'5', 'all' );
-			wp_enqueue_style( 'avia-grid' ,   $template_url."/css/grid.css", array(), 		'2', 'all' );
-			wp_enqueue_style( 'avia-layout',  $template_url."/css/layout.css", array(), 	'3', 'all' );
-			wp_enqueue_style( 'avia-scs',     $template_url."/css/shortcodes.css", array(), '2', 'all' );
+			wp_enqueue_style( 'avia-custom',  $template_url."/css/custom.css", array(), 	time(), 'all' );
+			wp_enqueue_style( 'avia-grid' ,   $template_url."/css/grid.css", array(), 		time(), 'all' );
+			wp_enqueue_style( 'avia-layout',  $template_url."/css/layout.css", array(), 	time(), 'all' );
+			wp_enqueue_style( 'avia-scs',     $template_url."/css/shortcodes.css", array(), time(), 'all' );
 		} else {
 			wp_enqueue_style( 'bundled',     $template_url."/css/bundled.css", array(), WEB_VERSION);
 		}

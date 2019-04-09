@@ -1405,3 +1405,12 @@ body.search .page-heading-container {
 	color: rgba(0,0,0,0.36)!important;
 	padding-right: 10px;
 }
+
+.cart-submitted .wc-forward,
+.cart-submitted .wc-forward:hover {
+	opacity: 0.5 !important;
+}
+
+body.cart-submitted *:hover {
+	cursor: wait !important;
+}

@@ -135,28 +135,20 @@ function avia_woocommerce_thumbnail($asdf)
 	$rating = $product->get_rating_html(); //get rating
 
 	$id = get_the_ID();
-	//$size = 'shop_catalog';
 	$size = 'large';
 
 	echo "<div class='thumbnail_container'>";
-		//echo avia_woocommerce_gallery_first_thumbnail( $id , $size);
-		//$thumbnail = get_the_post_thumbnail( $id , $size );			
-		
-		//$attachment_url = wp_get_attachment_url($attachment_id);
-		
 		$attachment_id = get_post_thumbnail_id($id);
 		$attachmentSrcData = wp_get_attachment_image_src($attachment_id, $size);
-				
-		//echo '<img src="' . $attachment_url . '" width="300" height="200" class="attachment-shop_catalog wp-post-image">';			
-		
-		if ($attachmentSrcData != '')			
-			//echo '<img src="' . $attachment_url_normal . '" srcset="' . $attachment_url_normal . ' 1x,' . $attachment_url_retina . ' 2x" width="300" height="200" class="attachment-shop_catalog wp-post-image">';
-			echo '<img src="' . $attachmentSrcData[0] . '" width="300" height="200" class="attachment-shop_catalog wp-post-image">';
+
+		if ($attachmentSrcData != '')
+			//echo '<img src="' . $attachmentSrcData[0] . '" width="300" height="200" class="attachment-shop_catalog wp-post-image">';
+			echo '<div class="featured-image-loop" style="background-image: url(\'' . $attachmentSrcData[0] . '\');"></div>';
 
 		else
 			echo '<img src="' . potichu_placeholder_image() . '" class="attachment-shop_catalog wp-post-image">';
-		
-		
+
+
 		if(!empty($rating)) echo "<span class='rating_container'>".$rating."</span>";
 		if($product->product_type == 'simple') echo "<span class='cart-loading'></span>";
 	echo "</div>";
@@ -175,15 +167,15 @@ function avia_woocommerce_gallery_first_thumbnail($id, $size, $id_only = false)
 		{
 			$gallery	= explode(',',$product_gallery);
 			$image_id 	= $gallery[0];
-			
+
 			//return id only
 			if(!empty($id_only)) return $image_id;
-			
+
 			$image 		= wp_get_attachment_image( $image_id, $size, false, array( 'class' => "attachment-$size avia-product-hover" ));
-			
-			
-			
-			
+
+
+
+
 			//return image
 			if(!empty($image)) return $image;
 		}
@@ -442,7 +434,7 @@ if(!function_exists('avia_woocommerce_breadcrumb'))
 			if (is_array($trail)) {
 				$last 		= array_pop($trail);
 			} else $last = '';
-			
+
 			$shop_id 	= woocommerce_get_page_id('shop');
 			$taxonomy 	= "product_cat";
 
@@ -528,10 +520,10 @@ function avia_woocommerce_before_main_content()
 	global $avia_config;
 
 	if(!isset($avia_config['shop_overview_column'])) $avia_config['shop_overview_column'] = "auto";
-	
+
 	$id = get_option('woocommerce_shop_page_id');
 	$layout = get_post_meta($id, 'layout', true);
-	
+
 	if(!empty($layout))
 	{
         	$avia_config['layout']['current'] = $avia_config['layout'][$layout];
@@ -1012,9 +1004,9 @@ if(!function_exists('avia_woocommerce_frontend_search_params'))
 	function avia_woocommerce_frontend_search_params()
 	{
 		return;
-		
+
 		// DISABLE SORTING DROPDOWN....
-		
+
 		global $avia_config;
 
 		if(!empty($avia_config['woocommerce']['disable_sorting_options'])) return false;
@@ -1045,7 +1037,7 @@ if(!function_exists('avia_woocommerce_frontend_search_params'))
 		$pc_key = !empty($avia_config['woocommerce']['product_count']) ? $avia_config['woocommerce']['product_count'] : $per_page;
 
 		$ps_key = strtolower($ps_key);
-		
+
 		$nofollow = 'rel="nofollow"';
 
 		//generate markup
@@ -1054,7 +1046,7 @@ if(!function_exists('avia_woocommerce_frontend_search_params'))
 		$output .= "    <ul class='sort-param sort-param-order'>";
 		$output .= "    	<li><span class='currently-selected'>".__("Sort by",'avia_framework')." <strong>".$product_order[$po_key]."</strong></span>";
 		$output .= "    	<ul>";
-		
+
 		$output .= "    	<li".avia_woo_active_class($po_key, 'unit-price')."><a href='".avia_woo_build_query_string($params, 'product_order', 'unit-price')."' {$nofollow}>	<span class='avia-bullet'></span>".$product_order['unit-price']."</a></li>";
 		$output .= "    	<li".avia_woo_active_class($po_key, 'title')."><a href='".avia_woo_build_query_string($params, 'product_order', 'title')."' {$nofollow}>	<span class='avia-bullet'></span>".$product_order['title']."</a></li>";
 		$output .= "    	<li".avia_woo_active_class($po_key, 'price')."><a href='".avia_woo_build_query_string($params, 'product_order', 'price')."' {$nofollow}>	<span class='avia-bullet'></span>".$product_order['price']."</a></li>";
